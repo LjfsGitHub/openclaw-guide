@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会员中心 - 获取所有OpenClaw教程 | OpenClaw Guide</title>
+    <link rel="stylesheet" href="/openclaw-guide/assets/css/apple-style.css">
+    <meta name="description" content="已支付用户会员中心，获取所有OpenClaw付费教程和高级文档。">
+    <style>
+        .verification-form {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-8);
+            max-width: 500px;
+            margin: var(--space-8) auto;
+        }
+        
+        .member-content {
+            display: none; /* 默认隐藏，验证后显示 */
+        }
+        
+        .verified-badge {
+            background: #4cd964;
+            color: white;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .tutorial-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin: var(--space-8) 0;
+        }
+        
+        .tutorial-item {
+            background: var(--bg-primary);
+            border: 2px solid var(--apple-blue);
+            border-radius: var(--radius-md);
+            padding: var(--space-6);
+            transition: all var(--transition-normal);
+        }
+        
+        .tutorial-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: var(--apple-blue);
+            color: white;
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: var(--space-4);
+            transition: all var(--transition-normal);
+        }
+        
+        .download-btn:hover {
+            background: var(--apple-blue-dark);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-content">
+            <a href="/openclaw-guide/" class="logo">
+                <span>🦐</span>
+                <span>OpenClaw Guide</span>
+            </a>
+            <nav class="nav">
+                <ul>
+                    <li><a href="/openclaw-guide/">首页</a></li>
+                    <li><a href="/openclaw-guide/#tutorials">免费教程</a></li>
+                    <li><a href="/openclaw-guide/paid-tutorials/feishu-integration.html">付费教程</a></li>
+                    <li><a href="/openclaw-guide/member-center.html">会员中心</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="tutorial-content">
+        <div class="container">
+            <div class="tutorial-header">
+                <h1 class="tutorial-title">OpenClaw Guide 会员中心</h1>
+                <p class="lead text-center text-secondary">
+                    已支付用户专属区域，获取所有付费教程和高级文档。
+                </p>
+            </div>
+
+            <!-- Verification Form -->
+            <div class="verification-form" id="verificationForm">
+                <h2 class="text-center mb-6">验证支付凭证</h2>
+                <p class="text-center text-secondary mb-6">
+                    请输入您的支付宝支付凭证号（付款订单号后6位）进行验证。
+                </p>
+                
+                <form id="paymentVerification">
+                    <div style="margin-bottom: var(--space-6);">
+                        <label for="paymentCode" style="display: block; margin-bottom: var(--space-2); font-weight: 600;">
+                            支付凭证号
+                        </label>
+                        <input type="text" id="paymentCode" 
+                               placeholder="请输入支付宝订单号后6位"
+                               style="width: 100%; padding: var(--space-3); border: 2px solid var(--border-color); border-radius: var(--radius-md); font-size: var(--font-size-base);"
+                               required>
+                        <p class="text-tertiary" style="font-size: var(--font-size-sm); margin-top: var(--space-2);">
+                            在支付宝账单中查找订单号，输入后6位即可。
+                        </p>
+                    </div>
+                    
+                    <div style="margin-bottom: var(--space-6);">
+                        <label for="email" style="display: block; margin-bottom: var(--space-2); font-weight: 600;">
+                            接收文档的邮箱
+                        </label>
+                        <input type="email" id="email" 
+                               placeholder="your-email@example.com"
+                               style="width: 100%; padding: var(--space-3); border: 2px solid var(--border-color); border-radius: var(--radius-md); font-size: var(--font-size-base);"
+                               required>
+                        <p class="text-tertiary" style="font-size: var(--font-size-sm); margin-top: var(--space-2);">
+                            验证成功后，所有教程文档将发送到此邮箱。
+                        </p>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        验证并获取所有教程
+                    </button>
+                </form>
+                
+                <div class="text-center mt-6">
+                    <p class="text-tertiary" style="font-size: var(--font-size-sm);">
+                        还没有支付？<a href="/openclaw-guide/paid-tutorials/feishu-integration.html" style="color: var(--apple-blue);">点击这里支付¥9.9</a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Member Content (Hidden until verified) -->
+            <div class="member-content" id="memberContent">
+                <div class="text-center mb-8">
+                    <div class="verified-badge">
+                        <span>✅</span>
+                        <span>已验证会员</span>
+                    </div>
+                    <h2>欢迎回来！这是您的所有教程内容</h2>
+                    <p class="text-secondary">
+                        一次支付，永久访问。所有文档已发送到您的邮箱，也可在此直接下载。
+                    </p>
+                </div>
+
+                <!-- Tutorial List -->
+                <div class="tutorial-list">
+                    <!-- Feishu Integration Guide -->
+                    <div class="tutorial-item">
+                        <h3>OpenClaw Feishu集成完整指南</h3>
+                        <p class="text-secondary" style="margin-bottom: var(--space-4);">
+                            完整的Feishu集成教程，包含实战步骤、代码示例和问题解决方案。
+                        </p>
+                        <div class="tutorial-meta" style="margin-bottom: var(--space-4);">
+                            <span>📖 PDF文档</span>
+                            <span>💻 代码示例</span>
+                            <span>🔧 实战项目</span>
+                        </div>
+                        <a href="#" class="download-btn" data-doc="feishu-guide">
+                            <span>📥</span>
+                            <span>下载文档</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Advanced Configuration Guide -->
+                    <div class="tutorial-item">
+                        <h3>OpenClaw高级配置指南</h3>
+                        <p class="text-secondary" style="margin-bottom: var(--space-4);">
+                            企业级部署、性能优化、安全配置等高级内容。
+                        </p>
+                        <div class="tutorial-meta" style="margin-bottom: var(--space-4);">
+                            <span>🏢 企业部署</span>
+                            <span>🚀 性能优化</span>
+                            <span>🔒 安全配置</span>
+                        </div>
+                        <a href="#" class="download-btn" data-doc="advanced-config">
+                            <span>📥</span>
+                            <span>下载文档</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Skill Development Kit -->
+                    <div class="tutorial-item">
+                        <h3>OpenClaw技能开发工具包</h3>
+                        <p class="text-secondary" style="margin-bottom: var(--space-4);">
+                            自定义技能开发模板、API集成示例、调试工具。
+                        </p>
+                        <div class="tutorial-meta" style="margin-bottom: var(--space-4);">
+                            <span>🛠️ 开发模板</span>
+                            <span>🔌 API集成</span>
+                            <span>🐛 调试工具</span>
+                        </div>
+                        <a href="#" class="download-btn" data-doc="skill-kit">
+                            <span>📥</span>
+                            <span>下载工具包</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Future Updates -->
+                    <div class="tutorial-item">
+                        <h3>未来更新内容</h3>
+                        <p class="text-secondary" style="margin-bottom: var(--space-4);">
+                            作为会员，您将免费获得所有未来更新的教程内容。
+                        </p>
+                        <div class="tutorial-meta" style="margin-bottom: var(--space-4);">
+                            <span>🔄 持续更新</span>
+                            <span>🎯 新功能教程</span>
+                            <span>🤝 社区优先</span>
+                        </div>
+                        <div class="verified-badge" style="background: var(--apple-blue);">
+                            <span>✨</span>
+                            <span>会员专属</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Support Section -->
+                <div class="text-center mt-10">
+                    <h3>需要帮助？</h3>
+                    <p class="text-secondary mb-6">
+                        如果您在下载或使用教程时遇到问题，请随时联系我们。
+                    </p>
+                    <a href="/openclaw-guide/contact/" class="btn btn-secondary">
+                        联系支持
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>学习资源</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/tutorials/">教程中心</a></li>
+                        <li><a href="/openclaw-guide/html-tutorials/getting-started.html">免费教程</a></li>
+                        <li><a href="/openclaw-guide/paid-tutorials/feishu-integration.html">付费教程</a></li>
+                        <li><a href="/openclaw-guide/member-center.html">会员中心</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>法律条款</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/privacy/">隐私政策</a></li>
+                        <li><a href="/openclaw-guide/terms/">使用条款</a></li>
+                        <li><a href="/openclaw-guide/refund/">退款政策</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/about/">关于我们</a></li>
+                        <li><a href="/openclaw-guide/contact/">联系我们</a></li>
+                        <li><a href="https://discord.gg/clawd">社区支持</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 OpenClaw Guide. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 简单的凭证验证系统
+        document.getElementById('paymentVerification').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const paymentCode = document.getElementById('paymentCode').value.trim();
+            const email = document.getElementById('email').value.trim();
+            
+            if (!paymentCode || !email) {
+                alert('请填写支付凭证号和邮箱');
+                return;
+            }
+            
+            if (paymentCode.length < 6) {
+                alert('支付凭证号至少6位');
+                return;
+            }
+            
+            // 显示加载状态
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = '验证中...';
+            submitBtn.disabled = true;
+            
+            // 模拟验证过程（实际应该调用后端API）
+            setTimeout(() => {
+                // 存储验证状态到localStorage
+                localStorage.setItem('openclaw_member_verified', 'true');
+                localStorage.setItem('openclaw_member_email', email);
+                localStorage.setItem('openclaw_payment_code', paymentCode);
+                localStorage.setItem('openclaw_verified_time', new Date().toISOString());
+                
+                // 隐藏验证表单，显示会员内容
+                document.getElementById('verificationForm').style.display = 'none';
+                document.getElementById('memberContent').style.display = 'block';
+                
+                // 发送验证成功通知（实际应该调用邮件API）
+                alert('验证成功！所有教程文档已发送到您的邮箱：' + email);
+                
+                // 恢复按钮状态
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                
+                // 模拟自动发送邮件
+                console.log('模拟发送邮件到:', email, '包含所有教程文档');
+                
+            }, 1500);
+        });
+        
+        // 检查是否已验证
+        document.addEventListener('DOMContentLoaded', function() {
+            const isVerified = localStorage.getItem('openclaw_member_verified') === 'true';
+            
+            if (isVerified) {
+                // 自动显示会员内容
+                document.getElementById('verificationForm').style.display = 'none';
+                document.getElementById('memberContent').style.display = 'block';
+                
+                // 显示欢迎信息
+                const email = localStorage.getItem('openclaw_member_email') || '会员';
+                const welcomeMsg = document.createElement('div');
+                welcomeMsg.className = 'text-center mb-4';
+                welcomeMsg.innerHTML = `<p class="text-secondary">欢迎回来，${email}！</p>`;
+                document.getElementById('memberContent').prepend(welcomeMsg);
+            }
+        });
+        
+        // 下载按钮点击事件
+        document.querySelectorAll('.download-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const docType = this.getAttribute('data-doc');
+                
+                // 检查是否已验证
+                const isVerified = localStorage.getItem('openclaw_member_verified') === 'true';
+                
+                if (!isVerified) {
+                    alert('请先验证支付凭证');
+                    return;
+                }
+                
+                // 模拟下载（实际应该提供真实文件下载）
+                alert('开始下载文档...（实际系统中这里会提供真实文件下载）');
+                
+                // 记录下载历史
+                const downloadHistory = JSON.parse(localStorage.getItem('openclaw_download_history') || '[]');
+                downloadHistory.push({
+                    doc: docType,
+                    time: new Date().toISOString()
+                });
+                localStorage.setItem('openclaw_download_history', JSON.stringify(downloadHistory));
+            });
+        });
+        
+        // 清除会员状态（用于测试）
+        window.clearMemberStatus = function() {
+            localStorage.removeItem('openclaw_member_verified');
+            localStorage.removeItem('openclaw_member_email');
+            localStorage.removeItem('openclaw_payment_code');
+            localStorage.removeItem('openclaw_verified_time');
+            localStorage.removeItem('openclaw_download_history');
+            alert('会员状态已清除，页面将刷新');
+            location.reload();
+        };
+    </script>
+</body>
+</html>
