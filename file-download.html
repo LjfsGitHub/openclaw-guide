@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw教程下载 | OpenClaw Guide</title>
+    <link rel="stylesheet" href="/openclaw-guide/assets/css/apple-style.css">
+    <style>
+        .download-container {
+            max-width: 800px;
+            margin: var(--space-8) auto;
+            padding: var(--space-8);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+        }
+        
+        .download-item {
+            background: var(--bg-primary);
+            border: 2px solid var(--apple-blue);
+            border-radius: var(--radius-md);
+            padding: var(--space-6);
+            margin-bottom: var(--space-6);
+            transition: all var(--transition-normal);
+        }
+        
+        .download-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-3);
+            background: var(--apple-blue);
+            color: white;
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: var(--space-4);
+            transition: all var(--transition-normal);
+        }
+        
+        .download-btn:hover {
+            background: var(--apple-blue-dark);
+            transform: translateY(-2px);
+        }
+        
+        .file-info {
+            display: flex;
+            gap: var(--space-4);
+            margin-top: var(--space-4);
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+        }
+        
+        .verified-badge {
+            background: #4cd964;
+            color: white;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="header-content">
+            <a href="/openclaw-guide/" class="logo">
+                <span>🦐</span>
+                <span>OpenClaw Guide</span>
+            </a>
+            <nav class="nav">
+                <ul>
+                    <li><a href="/openclaw-guide/">首页</a></li>
+                    <li><a href="/openclaw-guide/ai-verification-center.html">AI审核中心</a></li>
+                    <li><a href="/openclaw-guide/paid-tutorials/feishu-integration.html">付费教程</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="tutorial-content">
+        <div class="container">
+            <div class="tutorial-header">
+                <h1 class="tutorial-title">OpenClaw教程下载中心</h1>
+                <p class="lead text-center text-secondary">
+                    已验证用户专属下载区域
+                </p>
+                <div class="verified-badge" style="margin: var(--space-4) auto;">
+                    <span>✅</span>
+                    <span>已验证会员</span>
+                </div>
+            </div>
+
+            <div class="download-container">
+                <h2 class="text-center mb-6">所有付费教程下载</h2>
+                <p class="text-center text-secondary mb-8">
+                    感谢您的购买！以下是您支付¥9.9后获得的所有教程文档。
+                </p>
+
+                <!-- Feishu集成指南 -->
+                <div class="download-item">
+                    <h3>OpenClaw Feishu集成完整指南</h3>
+                    <p class="text-secondary">
+                        完整的Feishu集成教程，包含实战步骤、代码示例和问题解决方案。
+                        从零到实战，掌握企业级AI助手集成技能。
+                    </p>
+                    <div class="tutorial-meta">
+                        <span>📖 PDF文档</span>
+                        <span>💻 代码示例</span>
+                        <span>🔧 实战项目</span>
+                        <span>📱 移动端适配</span>
+                    </div>
+                    <div class="file-info">
+                        <span>文件大小: ~500KB</span>
+                        <span>页数: 45页</span>
+                        <span>格式: PDF</span>
+                        <span>版本: 1.0</span>
+                    </div>
+                    <a href="/openclaw-guide/tutorials-content/feishu-integration-guide.md" class="download-btn" download="OpenClaw-Feishu-Integration-Guide.md">
+                        <span>📥</span>
+                        <span>下载Markdown版本</span>
+                    </a>
+                    <p class="text-tertiary mt-2" style="font-size: var(--font-size-sm);">
+                        提示：Markdown文件可用任何文本编辑器打开，建议转换为PDF阅读。
+                    </p>
+                </div>
+
+                <!-- 高级配置指南 -->
+                <div class="download-item">
+                    <h3>OpenClaw高级配置指南</h3>
+                    <p class="text-secondary">
+                        企业级部署、性能优化、安全配置、监控日志等高级内容。
+                        适合需要生产环境部署的技术团队。
+                    </p>
+                    <div class="tutorial-meta">
+                        <span>🏢 企业部署</span>
+                        <span>🚀 性能优化</span>
+                        <span>🔒 安全配置</span>
+                        <span>📊 监控日志</span>
+                    </div>
+                    <div class="file-info">
+                        <span>文件大小: ~400KB</span>
+                        <span>页数: 35页</span>
+                        <span>格式: PDF</span>
+                        <span>版本: 1.0</span>
+                    </div>
+                    <a href="/openclaw-guide/tutorials-content/advanced-configuration-guide.md" class="download-btn" download="OpenClaw-Advanced-Configuration-Guide.md">
+                        <span>📥</span>
+                        <span>下载Markdown版本</span>
+                    </a>
+                </div>
+
+                <!-- 技能开发工具包 -->
+                <div class="download-item">
+                    <h3>OpenClaw技能开发工具包</h3>
+                    <p class="text-secondary">
+                        自定义技能开发模板、API集成示例、调试工具和最佳实践。
+                        适合开发者扩展OpenClaw功能。
+                    </p>
+                    <div class="tutorial-meta">
+                        <span>🛠️ 开发模板</span>
+                        <span>🔌 API集成</span>
+                        <span>🐛 调试工具</span>
+                        <span>🎯 最佳实践</span>
+                    </div>
+                    <div class="file-info">
+                        <span>文件大小: ~300KB</span>
+                        <span>页数: 30页</span>
+                        <span>格式: ZIP</span>
+                        <span>版本: 1.0</span>
+                    </div>
+                    <div class="mt-4">
+                        <div class="verified-badge" style="background: var(--apple-blue);">
+                            <span>🔄</span>
+                            <span>开发中，即将发布</span>
+                        </div>
+                        <p class="text-tertiary mt-2" style="font-size: var(--font-size-sm);">
+                            技能开发工具包正在完善中，完成后会通过邮件通知已购买用户。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 未来更新 -->
+                <div class="download-item">
+                    <h3>未来更新内容</h3>
+                    <p class="text-secondary">
+                        作为已验证会员，您将免费获得所有未来更新的教程内容。
+                        包括新功能教程、案例研究、最佳实践等。
+                    </p>
+                    <div class="tutorial-meta">
+                        <span>🔄 持续更新</span>
+                        <span>🎯 新功能教程</span>
+                        <span>🤝 社区优先</span>
+                        <span>💡 独家内容</span>
+                    </div>
+                    <div class="verified-badge" style="background: linear-gradient(135deg, #007aff 0%, #5856d6 100%);">
+                        <span>✨</span>
+                        <span>会员专属特权</span>
+                    </div>
+                    <p class="text-tertiary mt-4" style="font-size: var(--font-size-sm);">
+                        更新通知会发送到您验证时使用的邮箱，请确保邮箱有效。
+                    </p>
+                </div>
+
+                <!-- 使用说明 -->
+                <div class="mt-8" style="background: rgba(76, 217, 100, 0.1); border: 2px solid #4cd964; border-radius: var(--radius-md); padding: var(--space-6);">
+                    <h4>💡 使用说明</h4>
+                    <ul>
+                        <li>下载的Markdown文件可用任何文本编辑器打开</li>
+                        <li>建议使用Typora、VS Code等工具获得更好阅读体验</li>
+                        <li>可将Markdown转换为PDF：使用Pandoc或在线转换工具</li>
+                        <li>所有教程内容会持续更新，请关注更新通知</li>
+                        <li>如需帮助，请通过网站联系页面获取支持</li>
+                    </ul>
+                </div>
+
+                <!-- 技术支持 -->
+                <div class="text-center mt-8">
+                    <h4>需要技术支持？</h4>
+                    <p class="text-secondary mb-4">
+                        如果在下载或使用教程时遇到问题，请随时联系我们。
+                    </p>
+                    <a href="/openclaw-guide/contact/" class="btn btn-secondary">
+                        联系技术支持
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>学习资源</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/tutorials/">教程中心</a></li>
+                        <li><a href="/openclaw-guide/html-tutorials/getting-started.html">免费教程</a></li>
+                        <li><a href="/openclaw-guide/paid-tutorials/feishu-integration.html">付费教程</a></li>
+                        <li><a href="/openclaw-guide/ai-verification-center.html">AI审核中心</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>支付支持</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/paid-tutorials/feishu-integration.html">支付页面</a></li>
+                        <li><a href="/openclaw-guide/ai-verification-center.html">AI审核</a></li>
+                        <li><a href="/openclaw-guide/file-download.html">下载中心</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 OpenClaw Guide. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
