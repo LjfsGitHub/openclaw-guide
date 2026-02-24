@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw最佳实践指南 - OpenClaw Guide</title>
+    <link rel="stylesheet" href="/openclaw-guide/assets/css/style.css">
+    <meta name="description" content="OpenClaw使用的最佳实践、技巧和优化建议，帮助您提高效率和效果。">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <a href="/openclaw-guide/" class="logo">🦐 OpenClaw Guide</a>
+                <nav>
+                    <ul>
+                        <li><a href="/openclaw-guide/">首页</a></li>
+                        <li><a href="/openclaw-guide/tutorials/">教程中心</a></li>
+                        <li><a href="/openclaw-guide/about/">关于我们</a></li>
+                        <li><a href="/openclaw-guide/contact/">联系我们</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <article class="tutorial-content">
+                <h1>OpenClaw最佳实践指南</h1>
+                
+                <div class="meta-info">
+                    <span>📅 最后更新: 2026年2月24日</span>
+                    <span>📚 字数: 2000+字</span>
+                    <span>🎯 类型: 技巧和优化</span>
+                    <span>🆓 免费资源</span>
+                </div>
+
+                <div class="content">
+                    <h2>🎯 概述</h2>
+                    <p>本文档分享OpenClaw使用的最佳实践、技巧和优化建议。无论您是初学者还是有经验的用户，这些实践都能帮助您更高效地使用OpenClaw，获得更好的效果。</p>
+
+                    <h2>🏗️ 配置最佳实践</h2>
+                    
+                    <h3>1. 配置文件管理</h3>
+                    <p><strong>最佳实践</strong>: 使用版本控制管理配置文件</p>
+                    <p><strong>具体做法</strong>:</p>
+                    <pre><code># 1. 创建配置备份
+cp ~/.openclaw/openclaw.json ~/.openclaw/openclaw.json.backup
+
+# 2. 使用Git管理配置
+cd ~/.openclaw
+git init
+git add openclaw.json
+git commit -m "初始OpenClaw配置"
+
+# 3. 创建配置模板
+cp openclaw.json openclaw.json.template</code></pre>
+                    <p><strong>好处</strong>:</p>
+                    <ul>
+                        <li>✅ 配置变更可追踪</li>
+                        <li>✅ 错误配置可回滚</li>
+                        <li>✅ 多环境配置管理</li>
+                        <li>✅ 团队配置共享</li>
+                    </ul>
+
+                    <h3>2. 模型选择策略</h3>
+                    <p><strong>最佳实践</strong>: 根据任务选择合适的模型</p>
+                    <p><strong>推荐配置</strong>:</p>
+                    <pre><code>{
+  "日常对话": {
+    "model": "deepseek/deepseek-chat",
+    "maxTokens": 2000,
+    "temperature": 0.7
+  },
+  "代码生成": {
+    "model": "deepseek/deepseek-coder",
+    "maxTokens": 4000,
+    "temperature": 0.3
+  },
+  "创意写作": {
+    "model": "claude-3-haiku",
+    "maxTokens": 3000,
+    "temperature": 0.9
+  }
+}</code></pre>
+                    <p><strong>选择原则</strong>:</p>
+                    <ul>
+                        <li><strong>速度优先</strong>: DeepSeek, Claude Haiku</li>
+                        <li><strong>质量优先</strong>: GPT-4, Claude Opus</li>
+                        <li><strong>成本优先</strong>: DeepSeek, Gemini Flash</li>
+                        <li><strong>中文优化</strong>: DeepSeek, 文心一言</li>
+                    </ul>
+
+                    <h2>💬 对话最佳实践</h2>
+                    
+                    <h3>1. 提示词优化技巧</h3>
+                    <p><strong>最佳实践</strong>: 编写清晰有效的提示词</p>
+                    <p><strong>技巧示例</strong>:</p>
+                    <pre><code># 不好的提示词
+"帮我写代码"
+
+# 好的提示词
+"""
+请帮我编写一个Python函数，功能要求：
+1. 读取CSV文件
+2. 计算每列的平均值
+3. 输出结果到新的CSV文件
+
+具体要求：
+- 使用pandas库
+- 处理缺失值
+- 添加错误处理
+- 代码要有注释
+"""</code></pre>
+                    <p><strong>提示词原则</strong>:</p>
+                    <ul>
+                        <li><strong>明确具体</strong> - 避免模糊描述</li>
+                        <li><strong>分步骤</strong> - 复杂任务分解</li>
+                        <li><strong>提供上下文</strong> - 相关背景信息</li>
+                        <li><strong>指定格式</strong> - 期望的输出格式</li>
+                    </ul>
+
+                    <h3>2. 上下文管理</h3>
+                    <p><strong>最佳实践</strong>: 有效管理对话上下文</p>
+                    <p><strong>技巧</strong>:</p>
+                    <ol>
+                        <li><strong>定期总结</strong> - 长对话中定期总结关键点</li>
+                        <li><strong>重置上下文</strong> - 新话题时开始新对话</li>
+                        <li><strong>引用之前内容</strong> - 需要时明确引用</li>
+                        <li><strong>管理token使用</strong> - 避免超出限制</li>
+                    </ol>
+
+                    <h2>🔧 技能使用最佳实践</h2>
+                    
+                    <h3>1. 技能选择策略</h3>
+                    <p><strong>最佳实践</strong>: 根据需求选择合适的技能</p>
+                    <p><strong>技能分类</strong>:</p>
+                    <ul>
+                        <li><strong>生产力</strong>: notes, reminders, calendar</li>
+                        <li><strong>开发</strong>: github, coding-agent</li>
+                        <li><strong>集成</strong>: feishu, telegram, whatsapp</li>
+                        <li><strong>工具</strong>: weather, calculator, translator</li>
+                    </ul>
+                    <p><strong>选择原则</strong>:</p>
+                    <ul>
+                        <li>优先使用官方技能</li>
+                        <li>检查技能更新频率</li>
+                        <li>查看用户评价</li>
+                        <li>测试兼容性</li>
+                    </ul>
+
+                    <h2>🚀 性能优化最佳实践</h2>
+                    
+                    <h3>1. 响应速度优化</h3>
+                    <p><strong>最佳实践</strong>: 提高AI响应速度</p>
+                    <p><strong>优化方法</strong>:</p>
+                    <ol>
+                        <li><strong>使用更快模型</strong> - DeepSeek, Claude Haiku</li>
+                        <li><strong>减少maxTokens</strong> - 根据需求调整</li>
+                        <li><strong>优化网络</strong> - 使用更快的网络连接</li>
+                        <li><strong>本地缓存</strong> - 缓存常用响应</li>
+                    </ol>
+
+                    <h3>2. 成本优化</h3>
+                    <p><strong>最佳实践</strong>: 控制使用成本</p>
+                    <p><strong>优化策略</strong>:</p>
+                    <ol>
+                        <li><strong>选择经济模型</strong> - DeepSeek成本最低</li>
+                        <li><strong>优化使用量</strong> - 减少不必要的请求</li>
+                        <li><strong>设置预算</strong> - 监控和控制使用量</li>
+                        <li><strong>缓存结果</strong> - 避免重复相同请求</li>
+                    </ol>
+                    <p><strong>成本对比</strong> (每百万token):</p>
+                    <ul>
+                        <li>DeepSeek: $0.14</li>
+                        <li>Gemini Flash: $0.175</li>
+                        <li>Claude Haiku: $0.80</li>
+                        <li>GPT-4o Mini: $0.60</li>
+                    </ul>
+
+                    <h2>🔒 安全最佳实践</h2>
+                    
+                    <h3>1. API密钥安全</h3>
+                    <p><strong>最佳实践</strong>: 安全管理API密钥</p>
+                    <p><strong>安全措施</strong>:</p>
+                    <ol>
+                        <li><strong>使用环境变量</strong>:
+                            <pre><code>export OPENAI_API_KEY="your-key-here"</code></pre>
+                        </li>
+                        <li><strong>配置文件权限</strong>:
+                            <pre><code>chmod 600 ~/.openclaw/openclaw.json</code></pre>
+                        </li>
+                        <li><strong>定期轮换</strong> - 定期更换API密钥</li>
+                        <li><strong>访问日志</strong> - 监控API使用情况</li>
+                    </ol>
+
+                    <h2>📊 监控和维护最佳实践</h2>
+                    
+                    <h3>1. 系统监控</h3>
+                    <p><strong>最佳实践</strong>: 定期监控系统状态</p>
+                    <p><strong>监控项目</strong>:</p>
+                    <ul>
+                        <li>✅ 服务运行状态</li>
+                        <li>✅ 响应时间</li>
+                        <li>✅ 错误率</li>
+                        <li>✅ 资源使用</li>
+                    </ul>
+
+                    <div class="note">
+                        <p><strong>💡 提示</strong>: 遵循这些最佳实践，您将能更高效、更安全、更经济地使用OpenClaw，获得更好的使用体验和效果。</p>
+                    </div>
+
+                    <div class="next-steps">
+                        <h3>🎉 更多学习资源</h3>
+                        <p>除了最佳实践，我们还提供：</p>
+                        <ul>
+                            <li><a href="/openclaw-guide/html-blog/faq.html">常见问题解答</a> - 问题解决方案</li>
+                            <li><a href="/openclaw-guide/html-blog/case-studies.html">社区案例研究</a> - 真实成功故事</li>
+                            <li><a href="/openclaw-guide/html-tutorials/getting-started.html">入门指南</a> - 基础安装配置</li>
+                        </ul>
+                        
+                        <div class="action-buttons">
+                            <a href="/openclaw-guide/" class="btn-buy">返回首页</a>
+                            <a href="/openclaw-guide/html-blog/case-studies.html" class="btn-buy">查看社区案例</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>学习资源</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/tutorials/">教程中心</a></li>
+                        <li><a href="/openclaw-guide/html-tutorials/getting-started.html">免费教程</a></li>
+                        <li><a href="/openclaw-guide/tutorials/paid/feishu-integration">付费教程</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>法律条款</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/privacy/">隐私政策</a></li>
+                        <li><a href="/openclaw-guide/terms/">使用条款</a></li>
+                        <li><a href="/openclaw-guide/refund/">退款政策</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/about/">关于我们</a></li>
+                        <li><a href="/openclaw-guide/contact/">联系我们</a></li>
+                        <li><a href="https://discord.gg/clawd">社区支持</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 OpenClaw Guide. 保留所有权利。</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

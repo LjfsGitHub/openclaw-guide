@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw常见问题解答 - OpenClaw Guide</title>
+    <link rel="stylesheet" href="/openclaw-guide/assets/css/style.css">
+    <meta name="description" content="OpenClaw使用过程中常见问题的解决方案和答案，帮助您快速解决问题。">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <a href="/openclaw-guide/" class="logo">🦐 OpenClaw Guide</a>
+                <nav>
+                    <ul>
+                        <li><a href="/openclaw-guide/">首页</a></li>
+                        <li><a href="/openclaw-guide/tutorials/">教程中心</a></li>
+                        <li><a href="/openclaw-guide/about/">关于我们</a></li>
+                        <li><a href="/openclaw-guide/contact/">联系我们</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <article class="tutorial-content">
+                <h1>OpenClaw常见问题解答</h1>
+                
+                <div class="meta-info">
+                    <span>📅 最后更新: 2026年2月24日</span>
+                    <span>📚 字数: 1500+字</span>
+                    <span>🎯 类型: 问题解决方案</span>
+                    <span>🆓 免费资源</span>
+                </div>
+
+                <div class="content">
+                    <h2>📋 概述</h2>
+                    <p>本文档收集了OpenClaw使用过程中最常见的問題和解决方案。如果您遇到问题，请先查看这里，很可能已经有人遇到过并找到了解决方法。</p>
+
+                    <h2>🚀 安装和配置问题</h2>
+                    
+                    <h3>问题1：安装失败 "npm install -g openclaw" 失败</h3>
+                    <p><strong>症状</strong>: 安装过程中出现错误或超时</p>
+                    <p><strong>解决方案</strong>:</p>
+                    <ol>
+                        <li><strong>清理npm缓存</strong>:
+                            <pre><code>npm cache clean --force</code></pre>
+                        </li>
+                        <li><strong>使用国内镜像</strong> (中国用户):
+                            <pre><code>npm config set registry https://registry.npmmirror.com
+npm install -g openclaw</code></pre>
+                        </li>
+                        <li><strong>使用管理员权限</strong> (macOS/Linux):
+                            <pre><code>sudo npm install -g openclaw</code></pre>
+                        </li>
+                        <li><strong>使用nvm管理Node.js版本</strong>:
+                            <pre><code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+nvm install 18
+nvm use 18
+npm install -g openclaw</code></pre>
+                        </li>
+                    </ol>
+
+                    <h3>问题2：命令找不到 "openclaw: command not found"</h3>
+                    <p><strong>症状</strong>: 安装成功但无法运行openclaw命令</p>
+                    <p><strong>解决方案</strong>:</p>
+                    <ol>
+                        <li><strong>检查Node.js全局安装路径</strong>:
+                            <pre><code>npm config get prefix</code></pre>
+                        </li>
+                        <li><strong>添加到PATH环境变量</strong>:
+                            <ul>
+                                <li><strong>macOS/Linux</strong>: 在 <code>~/.bashrc</code>, <code>~/.zshrc</code> 或 <code>~/.profile</code> 中添加:
+                                    <pre><code>export PATH="\$PATH:\$(npm config get prefix)/bin"</code></pre>
+                                </li>
+                                <li><strong>Windows</strong>: 在系统环境变量中添加Node.js安装路径</li>
+                            </ul>
+                        </li>
+                        <li><strong>重新加载配置</strong>:
+                            <pre><code>source ~/.zshrc  # 或 source ~/.bashrc</code></pre>
+                        </li>
+                    </ol>
+
+                    <h2>💬 使用和功能问题</h2>
+                    
+                    <h3>问题3：AI助手不响应或响应慢</h3>
+                    <p><strong>症状</strong>: 对话无响应或响应时间过长</p>
+                    <p><strong>解决方案</strong>:</p>
+                    <ol>
+                        <li><strong>检查模型配置</strong>:
+                            <pre><code># 查看当前配置
+cat ~/.openclaw/openclaw.json</code></pre>
+                        </li>
+                        <li><strong>更换更快的模型</strong> (如DeepSeek):
+                            <pre><code>{
+  "model": "deepseek/deepseek-chat",
+  "maxTokens": 2000,
+  "temperature": 0.7
+}</code></pre>
+                        </li>
+                        <li><strong>检查网络连接</strong> - 确保可以访问AI API</li>
+                        <li><strong>减少maxTokens</strong> - 降低响应长度限制</li>
+                    </ol>
+
+                    <h3>问题4：文件操作权限错误</h3>
+                    <p><strong>症状</strong>: 无法读取或写入文件</p>
+                    <p><strong>解决方案</strong>:</p>
+                    <ol>
+                        <li><strong>检查文件权限</strong>:
+                            <pre><code>ls -la ~/.openclaw/workspace/</code></pre>
+                        </li>
+                        <li><strong>修复权限</strong>:
+                            <pre><code>sudo chown -R \$(whoami) ~/.openclaw
+sudo chmod -R 755 ~/.openclaw</code></pre>
+                        </li>
+                        <li><strong>使用绝对路径</strong>:
+                            <pre><code># 而不是相对路径
+openclaw chat
+# 输入: 请读取 /Users/username/.openclaw/workspace/test.txt</code></pre>
+                        </li>
+                    </ol>
+
+                    <h2>🔌 集成和插件问题</h2>
+                    
+                    <h3>问题5：Feishu插件配置失败</h3>
+                    <p><strong>症状</strong>: Feishu集成无法正常工作</p>
+                    <p><strong>解决方案</strong>:</p>
+                    <ol>
+                        <li><strong>检查插件安装</strong>:
+                            <pre><code>openclaw skills list</code></pre>
+                        </li>
+                        <li><strong>重新安装插件</strong>:
+                            <pre><code>openclaw skills install @openclaw/feishu</code></pre>
+                        </li>
+                        <li><strong>检查Feishu应用配置</strong>:
+                            <ul>
+                                <li>确保应用已发布</li>
+                                <li>检查权限配置</li>
+                                <li>验证事件订阅</li>
+                            </ul>
+                        </li>
+                        <li><strong>查看日志</strong>:
+                            <pre><code>tail -f /tmp/openclaw/openclaw-*.log</code></pre>
+                        </li>
+                    </ol>
+
+                    <h2>🛠️ 故障排除技巧</h2>
+                    
+                    <h3>通用故障排除步骤</h3>
+                    <ol>
+                        <li><strong>查看日志</strong> - 最重要的诊断工具
+                            <pre><code>tail -f /tmp/openclaw/openclaw-*.log</code></pre>
+                        </li>
+                        <li><strong>检查配置</strong>:
+                            <pre><code>cat ~/.openclaw/openclaw.json</code></pre>
+                        </li>
+                        <li><strong>重启服务</strong>:
+                            <pre><code>openclaw gateway restart</code></pre>
+                        </li>
+                        <li><strong>更新到最新版本</strong>:
+                            <pre><code>npm update -g openclaw</code></pre>
+                        </li>
+                    </ol>
+
+                    <h2>📈 性能优化问题</h2>
+                    
+                    <h3>问题6：内存使用过高</h3>
+                    <p><strong>症状</strong>: 系统变慢，内存占用高</p>
+                    <p><strong>解决方案</strong>:</p>
+                    <ol>
+                        <li><strong>限制并发请求</strong> - 在配置中设置</li>
+                        <li><strong>清理缓存文件</strong>:
+                            <pre><code>rm -rf ~/.openclaw/cache/*</code></pre>
+                        </li>
+                        <li><strong>减少maxTokens</strong> - 降低内存使用</li>
+                        <li><strong>使用更轻量的模型</strong></li>
+                    </ol>
+
+                    <h2>🔒 安全和权限问题</h2>
+                    
+                    <h3>问题7：权限被拒绝错误</h3>
+                    <p><strong>症状</strong>: "Permission denied" 错误</p>
+                    <p><strong>解决方案</strong>:</p>
+                    <ol>
+                        <li><strong>检查文件权限</strong>:
+                            <pre><code>ls -la /path/to/file</code></pre>
+                        </li>
+                        <li><strong>修复权限</strong>:
+                            <pre><code>sudo chown \$(whoami) /path/to/file
+sudo chmod 644 /path/to/file</code></pre>
+                        </li>
+                        <li><strong>使用正确用户运行</strong> - 不要使用root运行普通命令</li>
+                    </ol>
+
+                    <h2>🤝 获取更多帮助</h2>
+                    
+                    <h3>如果这里没有您的问题</h3>
+                    <ol>
+                        <li><strong>查看官方文档</strong>: <a href="https://docs.openclaw.ai">OpenClaw文档</a></li>
+                        <li><strong>搜索GitHub Issues</strong>: <a href="https://github.com/openclaw/openclaw/issues">GitHub Issues</a></li>
+                        <li><strong>加入社区</strong>: <a href="https://discord.gg/clawd">OpenClaw Discord</a></li>
+                        <li><strong>联系我们</strong>: <a href="/openclaw-guide/contact/">OpenClaw Guide支持</a></li>
+                    </ol>
+
+                    <div class="note">
+                        <p><strong>💡 提示</strong>: 本文档会定期更新，添加新的常见问题和解决方案。建议定期查看最新版本。</p>
+                    </div>
+
+                    <div class="next-steps">
+                        <h3>🎉 更多学习资源</h3>
+                        <p>除了FAQ，我们还提供：</p>
+                        <ul>
+                            <li><a href="/openclaw-guide/html-blog/best-practices.html">最佳实践指南</a> - 提高使用效率</li>
+                            <li><a href="/openclaw-guide/html-blog/case-studies.html">社区案例研究</a> - 真实成功故事</li>
+                            <li><a href="/openclaw-guide/html-tutorials/getting-started.html">入门指南</a> - 基础安装配置</li>
+                        </ul>
+                        
+                        <div class="action-buttons">
+                            <a href="/openclaw-guide/" class="btn-buy">返回首页</a>
+                            <a href="/openclaw-guide/html-blog/best-practices.html" class="btn-buy">查看最佳实践</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>学习资源</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/tutorials/">教程中心</a></li>
+                        <li><a href="/openclaw-guide/html-tutorials/getting-started.html">免费教程</a></li>
+                        <li><a href="/openclaw-guide/tutorials/paid/feishu-integration">付费教程</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>法律条款</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/privacy/">隐私政策</a></li>
+                        <li><a href="/openclaw-guide/terms/">使用条款</a></li>
+                        <li><a href="/openclaw-guide/refund/">退款政策</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/about/">关于我们</a></li>
+                        <li><a href="/openclaw-guide/contact/">联系我们</a></li>
+                        <li><a href="https://discord.gg/clawd">社区支持</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 OpenClaw Guide. 保留所有权利。</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

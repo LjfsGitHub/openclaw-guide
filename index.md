@@ -49,9 +49,9 @@ description: "学习OpenClaw集成、开发、部署的最佳实践和实战教�
 ### 🆓 免费学习资源
 
 - [OpenClaw入门指南](/openclaw-guide/html-tutorials/getting-started.html) - 基础安装和配置
-- [常见问题解答](/blog/faq/) - 解决常见配置问题
-- [最佳实践](/blog/best-practices/) - 提高效率的技巧
-- [社区案例](/blog/case-studies/) - 真实用户成功故事
+- [常见问题解答](/openclaw-guide/html-blog/faq.html) - 解决常见配置问题
+- [最佳实践](/openclaw-guide/html-blog/best-practices.html) - 提高效率的技巧
+- [社区案例](/openclaw-guide/html-blog/case-studies.html) - 真实用户成功故事
 
 ## 🚀 快速开始
 
