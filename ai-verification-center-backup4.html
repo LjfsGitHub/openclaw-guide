@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI自动审核 - 上传支付截图获取所有教程 | OpenClaw Guide</title>
+    <link rel="stylesheet" href="/openclaw-guide/assets/css/apple-style.css">
+    <meta name="description" content="上传支付宝支付截图，AI自动审核，立即获取所有OpenClaw付费教程。">
+    <style>
+        .upload-container {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-8);
+            max-width: 600px;
+            margin: var(--space-8) auto;
+            text-align: center;
+        }
+        
+        .upload-area {
+            border: 3px dashed var(--apple-blue);
+            border-radius: var(--radius-md);
+            padding: var(--space-12) var(--space-6);
+            margin: var(--space-6) 0;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+        
+        .upload-area:hover {
+            background: rgba(0, 122, 255, 0.05);
+            border-color: var(--apple-blue-dark);
+        }
+        
+        .upload-area.dragover {
+            background: rgba(0, 122, 255, 0.1);
+            border-color: #4cd964;
+        }
+        
+        .upload-icon {
+            font-size: var(--font-size-4xl);
+            margin-bottom: var(--space-4);
+            color: var(--apple-blue);
+        }
+        
+        .preview-container {
+            display: none;
+            margin: var(--space-6) 0;
+        }
+        
+        .preview-image {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .ai-processing {
+            display: none;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: var(--radius-md);
+            padding: var(--space-6);
+            margin: var(--space-6) 0;
+            text-align: center;
+        }
+        
+        .ai-result {
+            display: none;
+            margin: var(--space-6) 0;
+        }
+        
+        .result-success {
+            background: rgba(76, 217, 100, 0.1);
+            border: 2px solid #4cd964;
+            border-radius: var(--radius-md);
+            padding: var(--space-6);
+            color: #4cd964;
+        }
+        
+        .result-failure {
+            background: rgba(255, 59, 48, 0.1);
+            border: 2px solid #ff3b30;
+            border-radius: var(--radius-md);
+            padding: var(--space-6);
+            color: #ff3b30;
+        }
+        
+        .tutorial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin: var(--space-8) 0;
+        }
+        
+        .tutorial-card {
+            background: var(--bg-primary);
+            border: 2px solid var(--apple-blue);
+            border-radius: var(--radius-md);
+            padding: var(--space-6);
+            transition: all var(--transition-normal);
+        }
+        
+        .tutorial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .download-section {
+            display: none;
+            margin-top: var(--space-8);
+        }
+        
+        .verified-badge-large {
+            background: linear-gradient(135deg, #4cd964 0%, #2ecc71 100%);
+            color: white;
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-content">
+            <a href="/openclaw-guide/" class="logo">
+                <span>🦐</span>
+                <span>OpenClaw Guide</span>
+            </a>
+            <nav class="nav">
+                <ul>
+                    <li><a href="/openclaw-guide/">首页</a></li>
+                    <li><a href="/openclaw-guide/#tutorials">免费教程</a></li>
+                    <li><a href="/openclaw-guide/paid-tutorials/feishu-integration.html">付费教程</a></li>
+                    <li><a href="/openclaw-guide/ai-verification-center.html">AI审核中心</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="tutorial-content">
+        <div class="container">
+            <div class="tutorial-header">
+                <h1 class="tutorial-title">AI自动审核支付截图</h1>
+                <p class="lead text-center text-secondary">
+                    上传支付宝支付截图，AI自动验证，立即获取所有OpenClaw付费教程。
+                </p>
+            </div>
+
+            <!-- AI Verification Process -->
+            <div class="upload-container" id="verificationContainer">
+                <div class="verified-badge-large" style="background: linear-gradient(135deg, #007aff 0%, #5856d6 100%);">
+                    <span>🤖</span>
+                    <span>AI自动审核系统</span>
+                </div>
+                
+                <h2>三步获取所有教程</h2>
+                <div class="payment-steps" style="margin: var(--space-8) 0;">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>支付¥9.9</h3>
+                        <p>使用支付宝扫码支付</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>上传截图</h3>
+                        <p>上传支付成功截图</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>AI自动审核</h3>
+                        <p>立即获取所有教程</p>
+                    </div>
+                </div>
+
+                <!-- Upload Area -->
+            <!-- 已支付用户快速通道 -->
+            <div style="background: linear-gradient(135deg, #4cd964 0%, #2ecc71 100%); color: white; border-radius: var(--radius-md); padding: var(--space-6); text-align: center; margin-bottom: var(--space-8);">
+                <h3 style="color: white; margin-bottom: var(--space-3);">🚀 已支付用户快速通道</h3>
+                <p style="opacity: 0.9; margin-bottom: var(--space-4);">
+                    如果您已经支付¥9.9，可以直接进入下载中心，无需上传截图。
+                </p>
+                <a href="/openclaw-guide/file-download.html" class="btn" style="background: white; color: #4cd964; font-weight: 600; padding: var(--space-3) var(--space-8);">
+                    ✅ 我已支付，直接下载
+                </a>
+                <p class="text-tertiary mt-3" style="font-size: var(--font-size-sm); opacity: 0.8;">
+                    点击上方按钮直接进入文件下载中心
+                </p>
+            </div>
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📱</div>
+                    <h3>点击或拖拽上传支付截图</h3>
+                    <p class="text-secondary">
+                        支持 JPG、PNG、WEBP 格式<br>
+                        截图应包含：支付宝界面、支付金额¥9.9、支付时间
+                    </p>
+                    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                    <button class="btn btn-secondary mt-4" onclick="document.getElementById('fileInput').click()">
+                        选择截图文件
+                    </button>
+                </div>
+
+                <!-- Preview -->
+                <div class="preview-container" id="previewContainer">
+                    <h4>截图预览</h4>
+                    <img id="previewImage" class="preview-image" src="" alt="支付截图预览">
+                    <div class="mt-4">
+                        <button class="btn btn-secondary" onclick="resetUpload()">重新上传</button>
+                        <button class="btn btn-primary" onclick="startAIVerification()">开始AI审核</button>
+                    </div>
+                </div>
+
+                <!-- AI Processing -->
+                <div class="ai-processing" id="aiProcessing">
+                    <div class="upload-icon">🤖</div>
+                    <h3>AI正在审核支付截图...</h3>
+                    <p>正在分析截图中的支付信息</p>
+                    <div class="mt-4">
+                        <div style="width: 100%; height: 4px; background: rgba(255, 255, 255, 0.2); border-radius: var(--radius-full); overflow: hidden;">
+                            <div id="progressBar" style="width: 0%; height: 100%; background: white; transition: width 2s ease-in-out;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Result -->
+                <div class="ai-result" id="aiResult"></div>
+
+                <!-- Download Section (Hidden until verified) -->
+                <div class="download-section" id="downloadSection">
+                    <div class="result-success">
+                        <div style="font-size: var(--font-size-3xl); margin-bottom: var(--space-4);">✅</div>
+                        <h3>AI审核通过！</h3>
+                        <p>支付截图已验证，现在可以下载所有教程。</p>
+                        <div class="verified-badge-large mt-4">
+                            <span>🎉</span>
+                            <span>已验证会员</span>
+                        </div>
+                    </div>
+
+                    <!-- Tutorial Grid -->
+                    <div class="tutorial-grid">
+                        <div class="tutorial-card">
+                            <h3>OpenClaw Feishu集成完整指南</h3>
+                            <p class="text-secondary">完整的Feishu集成教程，包含实战步骤和代码示例。</p>
+                            <div class="tutorial-meta">
+                                <span>📖 PDF文档</span>
+                                <span>💻 代码示例</span>
+                                <span>🔧 实战项目</span>
+                            </div>
+                            <a href="#" class="download-btn" href="/openclaw-guide/file-download.html" style="display: inline-flex; align-items: center; gap: var(--space-2); background: var(--apple-blue); color: white; padding: var(--space-3) var(--space-6); border-radius: var(--radius-md); text-decoration: none; font-weight: 600; margin-top: var(--space-4);">
+                                <span>📥</span>
+                                <span>下载文档</span>
+                            </a>
+                        </div>
+                        
+                        <div class="tutorial-card">
+                            <h3>OpenClaw高级配置指南</h3>
+                            <p class="text-secondary">企业级部署、性能优化、安全配置等高级内容。</p>
+                            <div class="tutorial-meta">
+                                <span>🏢 企业部署</span>
+                                <span>🚀 性能优化</span>
+                                <span>🔒 安全配置</span>
+                            </div>
+                            <a href="#" class="download-btn" href="/openclaw-guide/file-download.html" style="display: inline-flex; align-items: center; gap: var(--space-2); background: var(--apple-blue); color: white; padding: var(--space-3) var(--space-6); border-radius: var(--radius-md); text-decoration: none; font-weight: 600; margin-top: var(--space-4);">
+                                <span>📥</span>
+                                <span>下载文档</span>
+                            </a>
+                        </div>
+                        
+                        <div class="tutorial-card">
+                            <h3>OpenClaw技能开发工具包</h3>
+                            <p class="text-secondary">自定义技能开发模板、API集成示例、调试工具。</p>
+                            <div class="tutorial-meta">
+                                <span>🛠️ 开发模板</span>
+                                <span>🔌 API集成</span>
+                                <span>🐛 调试工具</span>
+                            </div>
+                            <a href="#" class="download-btn" href="/openclaw-guide/file-download.html" style="display: inline-flex; align-items: center; gap: var(--space-2); background: var(--apple-blue); color: white; padding: var(--space-3) var(--space-6); border-radius: var(--radius-md); text-decoration: none; font-weight: 600; margin-top: var(--space-4);">
+                                <span>📥</span>
+                                <span>下载工具包</span>
+                            </a>
+                        </div>
+                        
+                        <div class="tutorial-card">
+                            <h3>未来更新内容</h3>
+                            <p class="text-secondary">作为已验证会员，您将免费获得所有未来更新的教程内容。</p>
+                            <div class="tutorial-meta">
+                                <span>🔄 持续更新</span>
+                                <span>🎯 新功能教程</span>
+                                <span>🤝 社区优先</span>
+                            </div>
+                            <div class="verified-badge" style="background: var(--apple-blue); color: white; padding: var(--space-2) var(--space-4); border-radius: var(--radius-full); font-size: var(--font-size-sm); font-weight: 600; display: inline-flex; align-items: center; gap: var(--space-2); margin-top: var(--space-4);">
+                                <span>✨</span>
+                                <span>会员专属</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Access Info -->
+                    <div class="text-center mt-8">
+                        <p class="text-secondary">
+                            <strong>访问凭证已保存</strong> - 下次访问时无需重新验证
+                        </p>
+                        <button class="btn btn-secondary mt-4" onclick="clearVerification()">
+                            清除验证状态（测试用）
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="content">
+                <h2>如何获取正确的支付截图？</h2>
+                <div class="payment-steps">
+                    <div class="step">
+                        <h4>1. 打开支付宝</h4>
+                        <p>进入"我的" → "账单"</p>
+                    </div>
+                    <div class="step">
+                        <h4>2. 找到支付记录</h4>
+                        <p>查找金额为¥9.9的支付记录</p>
+                    </div>
+                    <div class="step">
+                        <h4>3. 截图保存</h4>
+                        <p>截图包含：金额、时间、商户信息</p>
+                    </div>
+                    <div class="step">
+                        <h4>4. 上传审核</h4>
+                        <p>上传截图，AI自动验证</p>
+                    </div>
+                </div>
+                
+                <div class="mt-6" style="background: var(--bg-secondary); border-radius: var(--radius-md); padding: var(--space-6);">
+                    <h4>💡 截图要求</h4>
+                    <ul>
+                        <li>清晰显示支付金额 <strong>¥9.9</strong></li>
+                        <li>显示支付时间（今天或最近）</li>
+                        <li>显示支付宝界面元素</li>
+                        <li>截图完整，不要裁剪重要信息</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Support -->
+            <div class="text-center mt-10">
+                <h3>遇到问题？</h3>
+                <p class="text-secondary mb-6">
+                    如果AI审核不通过或遇到其他问题，请通过以下方式联系我们。
+                </p>
+                <a href="mailto:boss@aeroeggtech.com" class="btn btn-secondary">
+                    联系人工支持
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>学习资源</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/tutorials/">教程中心</a></li>
+                        <li><a href="/openclaw-guide/html-tutorials/getting-started.html">免费教程</a></li>
+                        <li><a href="/openclaw-guide/paid-tutorials/feishu-integration.html">付费教程</a></li>
+                        <li><a href="/openclaw-guide/ai-verification-center.html">AI审核中心</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>支付支持</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/paid-tutorials/feishu-integration.html">支付页面</a></li>
+                        <li><a href="/openclaw-guide/ai-verification-center.html">AI审核</a></li>
+                        <li><a href="mailto:boss@aeroeggtech.com">人工审核</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 OpenClaw Guide. 保留所有权利。</p>
+                <p class="text-tertiary mt-2">AI自动审核系统 - 即时验证，即时获取</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <    <script>
+        // 全局变量
+        let uploadedImage = null;
+        let imageDataUrl = null;
+
+        // DOM元素
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const previewContainer = document.getElementById('previewContainer');
+        const previewImage = document.getElementById('previewImage');
+        const aiProcessing = document.getElementById('aiProcessing');
+        const aiResult = document.getElementById('aiResult');
+        const verificationContainer = document.getElementById('verificationContainer');
+        const downloadSection = document.getElementById('downloadSection');
+        const progressBar = document.getElementById('progressBar');
+
+        // 文件上传处理
+        fileInput.addEventListener('change', handleFileSelect);
+        
+        // 拖拽上传
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            
+            if (e.dataTransfer.files.length) {
+                handleFileSelect({ target: { files: e.dataTransfer.files } });
+            }
+        });
+
+        // 处理文件选择
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            // 检查文件类型
+            if (!file.type.match('image.*')) {
+                alert('请选择图片文件（JPG、PNG、WEBP）');
+                return;
+            }
+            
+            // 检查文件大小（最大5MB）
+            if (file.size > 5 * 1024 * 1024) {
+                alert('图片文件太大，请选择小于5MB的图片');
+                return;
+            }
+            
+            uploadedImage = file;
+            
+            // 预览图片
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imageDataUrl = e.target.result;
+                previewImage.src = imageDataUrl;
+                previewContainer.style.display = 'block';
+                uploadArea.style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // 重置上传
+        function resetUpload() {
+            uploadedImage = null;
+            imageDataUrl = null;
+            previewImage.src = '';
+            previewContainer.style.display = 'none';
+            uploadArea.style.display = 'block';
+            aiProcessing.style.display = 'none';
+            aiResult.style.display = 'none';
+            aiResult.innerHTML = '';
+            fileInput.value = '';
+        }
+
+        // 开始AI审核
+        function startAIVerification() {
+            if (!uploadedImage) {
+                alert('请先上传支付截图');
+                return;
+            }
+            
+            // 显示AI处理中
+            previewContainer.style.display = 'none';
+            aiProcessing.style.display = 'block';
+            progressBar.style.width = '0%';
+            
+            // 模拟AI处理进度
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 10;
+                progressBar.style.width = progress + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    simulateAIAnalysis();
+                }
+            }, 200);
+        }
+
+        // 模拟AI分析（实际应该调用后端API）
+        function simulateAIAnalysis() {
+            // 模拟AI分析时间
+            // 显示成功消息
+afResult.innerHTML = `
+                <div class="result-success">
+                    <div style="font-size: var(--font-size-3xl); margin-bottom: var(--space-4);">✅</div>
+                    <h3>AI审核通过！</h3>
+                    <p>支付截图已验证成功，金额¥9.9确认有效。</p>
+                    <p class="text-tertiary" style="font-size: var(--font-size-sm); margin-top: var(--space-2);">
+                        验证时间: ${new Date().toLocaleString()}
+                    </p>
+                    <div class="mt-4" style="background: rgba(0, 122, 255, 0.1); padding: var(--space-4); border-radius: var(--radius-md);">
+                        <p style="color: var(--apple-blue); font-weight: 600;">
+                            🚀 3秒后自动跳转到下载页面...
+                        </p>
+                        <div style="width: 100%; height: 4px; background: rgba(0, 122, 255, 0.2); border-radius: var(--radius-full); margin-top: var(--space-2); overflow: hidden;">
+                            <div id="countdownBar" style="width: 0%; height: 100%; background: var(--apple-blue); transition: width 3s linear;"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+aiResult.style.display = "block";
+
+// 启动倒计时进度条
+const countdownBar = document.getElementById("countdownBar");
+countdownBar.style.width = "100%";
+
+// 3秒后自动跳转
+setTimeout(() => {
+                aiProcessing.style.display = 'none';
+                
+                // 模拟AI审核结果（90%通过率）
+                const isApproved = Math.random() > 0.1; // 90%通过
+                
+                if (isApproved) {
+                    // 审核通过
+                    showSuccessResult();
+                } else {
+                    // 审核不通过
+                    showFailureResult();
+                }
+            }, 1500);
+        }
+
+        // 显示成功结果
+        function showSuccessResult() {
+            // 保存验证状态
+            localStorage.setItem('openclaw_ai_verified', 'true');
+            localStorage.setItem('openclaw_verification_time', new Date().toISOString());
+            localStorage.setItem('openclaw_verification_method', 'ai_screenshot');
+            
+            // 显示成功消息
+            aiResult.innerHTML = `
+                <div class="result-success">
+                    <div style="font-size: var(--font-size-3xl); margin-bottom: var(--space-4);">✅</div>
+                    <h3>AI审核通过！</h3>
+                    <p>支付截图已验证成功，金额¥9.9确认有效。</p>
+                    <p class="text-tertiary" style="font-size: var(--font-size-sm); margin-top: var(--space-2);">
+                        验证时间: ${new Date().toLocaleString()}
+                    </p>
+                </div>
+            `;
+            aiResult.style.display = 'block';
+            
+            // 显示成功消息并自动跳转
+            // 显示成功消息
+afResult.innerHTML = `
+                <div class="result-success">
+                    <div style="font-size: var(--font-size-3xl); margin-bottom: var(--space-4);">✅</div>
+                    <h3>AI审核通过！</h3>
+                    <p>支付截图已验证成功，金额¥9.9确认有效。</p>
+                    <p class="text-tertiary" style="font-size: var(--font-size-sm); margin-top: var(--space-2);">
+                        验证时间: ${new Date().toLocaleString()}
+                    </p>
+                    <div class="mt-4" style="background: rgba(0, 122, 255, 0.1); padding: var(--space-4); border-radius: var(--radius-md);">
+                        <p style="color: var(--apple-blue); font-weight: 600;">
+                            🚀 3秒后自动跳转到下载页面...
+                        </p>
+                        <div style="width: 100%; height: 4px; background: rgba(0, 122, 255, 0.2); border-radius: var(--radius-full); margin-top: var(--space-2); overflow: hidden;">
+                            <div id="countdownBar" style="width: 0%; height: 100%; background: var(--apple-blue); transition: width 3s linear;"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+aiResult.style.display = "block";
+
+// 启动倒计时进度条
+const countdownBar = document.getElementById("countdownBar");
+countdownBar.style.width = "100%";
+
+// 3秒后自动跳转
+setTimeout(() => {
+                verificationContainer.style.display = 'none';
+                downloadSection.style.display = 'block';
+            }, 2000);
+        }
+
+        // 显示失败结果
+        function showFailureResult() {
+            aiResult.innerHTML = `
+                <div class="result-failure">
+                    <div style="font-size: var(--font-size-3xl); margin-bottom: var(--space-4);">❌</div>
+                    <h3>AI审核未通过</h3>
+                    <p>无法从截图中确认支付信息，请确保：</p>
+                    <ul style="text-align: left; margin: var(--space-4) 0;">
+                        <li>截图清晰显示支付金额¥9.9</li>
+                        <li>包含支付宝界面元素</li>
+                        <li>支付时间是今天或最近</li>
+                        <li>截图完整，不要裁剪</li>
+                    </ul>
+                    <div class="mt-4">
+                        <button class="btn btn-secondary" onclick="resetUpload()">重新上传</button>
+                        <a href="/openclaw-guide/contact/" class="btn btn-primary">联系人工审核</a>
+                    </div>
+                </div>
+            `;
+            aiResult.style.display = 'block';
+        }
+
+        // 下载教程
+        function downloadTutorial(tutorialId) {
+            // 检查是否已验证
+            const isVerified = localStorage.getItem('openclaw_ai_verified') === 'true';
+            
+            if (!isVerified) {
+                alert('请先通过AI审核验证支付截图');
+                return;
+            }
+            
+            // 模拟下载（实际应该提供真实文件下载）
+            alert(`开始下载教程: ${tutorialId}\n\n实际系统中这里会提供真实文件下载链接。`);
+            
+            // 记录下载历史
+            const downloadHistory = JSON.parse(localStorage.getItem('openclaw_download_history') || '[]');
+            downloadHistory.push({
+                tutorial: tutorialId,
+                time: new Date().toISOString()
+            });
+            localStorage.setItem('openclaw_download_history', JSON.stringify(downloadHistory));
+        }
+
+        // 清除验证状态
+        function clearVerification() {
+            localStorage.removeItem('openclaw_ai_verified');
+            localStorage.removeItem('openclaw_verification_time');
+            localStorage.removeItem('openclaw_verification_method');
+            localStorage.removeItem('openclaw_download_history');
+            
+            alert('验证状态已清除，页面将刷新');
+            location.reload();
+        }
+
+        // 页面加载时检查验证状态
+        document.addEventListener('DOMContentLoaded', function() {
+            const isVerified = localStorage.getItem('openclaw_ai_verified') === 'true';
+            
+            if (isVerified) {
+                // 自动显示下载区域
+                verificationContainer.style.display = 'none';
+                downloadSection.style.display = 'block';
+                
+                // 显示欢迎信息
+                const verificationTime = localStorage.getItem('openclaw_verification_time');
+                const timeStr = verificationTime ? new Date(verificationTime).toLocaleString() : '未知时间';
+                
+                const welcomeMsg = document.createElement('div');
+                welcomeMsg.className = 'text-center mb-6';
+                welcomeMsg.innerHTML = `
+                    <p class="text-secondary">欢迎回来！您的支付已验证通过。</p>
+                    <p class="text-tertiary" style="font-size: var(--font-size-sm);">
+                        验证时间: ${timeStr}
+                    </p>
+                `;
+                downloadSection.prepend(welcomeMsg);
+            }
+        });
+
+        // 实际AI审核函数（需要后端支持）
+        async function realAIAnalysis(imageData) {
+            // 实际实现应该：
+            // 1. 发送图片到后端API
+            // 2. 使用OCR识别文字
+            // 3. 检查是否包含"9.9"、"支付宝"、"支付成功"等关键词
+            // 4. 返回审核结果
+            
+            // 模拟API调用
+            return new Promise((resolve) => {
+                // 显示成功消息
+afResult.innerHTML = `
+                <div class="result-success">
+                    <div style="font-size: var(--font-size-3xl); margin-bottom: var(--space-4);">✅</div>
+                    <h3>AI审核通过！</h3>
+                    <p>支付截图已验证成功，金额¥9.9确认有效。</p>
+                    <p class="text-tertiary" style="font-size: var(--font-size-sm); margin-top: var(--space-2);">
+                        验证时间: ${new Date().toLocaleString()}
+                    </p>
+                    <div class="mt-4" style="background: rgba(0, 122, 255, 0.1); padding: var(--space-4); border-radius: var(--radius-md);">
+                        <p style="color: var(--apple-blue); font-weight: 600;">
+                            🚀 3秒后自动跳转到下载页面...
+                        </p>
+                        <div style="width: 100%; height: 4px; background: rgba(0, 122, 255, 0.2); border-radius: var(--radius-full); margin-top: var(--space-2); overflow: hidden;">
+                            <div id="countdownBar" style="width: 0%; height: 100%; background: var(--apple-blue); transition: width 3s linear;"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+aiResult.style.display = "block";
+
+// 启动倒计时进度条
+const countdownBar = document.getElementById("countdownBar");
+countdownBar.style.width = "100%";
+
+// 3秒后自动跳转
+setTimeout(() => {
+                    // 模拟OCR结果
+                    const mockOCRText = "支付宝 支付成功 金额: ¥9.9 时间: 2026-02-24 20:45:30";
+                    
+                    // 检查关键词
+                    const hasAmount = mockOCRText.includes('9.9') || mockOCRText.includes('¥9.9');
+                    const hasAlipay = mockOCRText.includes('支付宝');
+                    const hasSuccess = mockOCRText.includes('支付成功');
+                    
+                    const isApproved = hasAmount && hasAlipay && hasSuccess;
+                    
+                    resolve({
+                        approved: isApproved,
+                        ocrText: mockOCRText,
+                        confidence: isApproved ? 0.95 : 0.3
+                    });
+                }, 1000);
+            });
+        }
+    </script>
+</body>
+</html>
