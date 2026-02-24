@@ -338,7 +338,7 @@ openclaw gateway status
 如有问题或建议，请通过以下方式联系：
 
 - **网站**: https://ljfsgithub.github.io/openclaw-guide/
-- **邮箱**: contact@openclaw-guide.com
+- **邮箱**: boss@aeroeggtech.com
 - **社区**: https://discord.gg/clawd
 
 ---
