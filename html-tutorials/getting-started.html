@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw入门指南 - OpenClaw Guide</title>
+    <link rel="stylesheet" href="/openclaw-guide/assets/css/style.css">
+    <meta name="description" content="手把手教你安装和配置OpenClaw，快速拥有自己的AI助手。">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <a href="/openclaw-guide/" class="logo">🦐 OpenClaw Guide</a>
+                <nav>
+                    <ul>
+                        <li><a href="/openclaw-guide/">首页</a></li>
+                        <li><a href="/openclaw-guide/tutorials/">教程中心</a></li>
+                        <li><a href="/openclaw-guide/about/">关于我们</a></li>
+                        <li><a href="/openclaw-guide/contact/">联系我们</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <article class="tutorial-content">
+                <h1>OpenClaw入门指南：从零开始安装配置</h1>
+                
+                <div class="meta-info">
+                    <span>📅 发布日期: 2026年2月24日</span>
+                    <span>⏱️ 预计时间: 20分钟</span>
+                    <span>🎯 难度: 初级</span>
+                    <span>🆓 类型: 免费教程</span>
+                </div>
+
+                <div class="content">
+                    <h2>🎯 教程目标</h2>
+                    <p>通过本教程，你将成功安装OpenClaw并完成基础配置，拥有一个可用的AI助手。</p>
+                    
+                    <h3>你将完成：</h3>
+                    <ul>
+                        <li>✅ OpenClaw安装</li>
+                        <li>✅ 基础配置设置</li>
+                        <li>✅ 简单功能测试</li>
+                        <li>✅ 问题排查基础</li>
+                    </ul>
+
+                    <h2>📋 系统要求</h2>
+                    
+                    <h3>操作系统</h3>
+                    <ul>
+                        <li><strong>macOS</strong> 10.15+ (推荐)</li>
+                        <li><strong>Linux</strong> (Ubuntu/Debian/CentOS)</li>
+                        <li><strong>Windows</strong> 10+ (WSL2推荐)</li>
+                    </ul>
+
+                    <h3>软件要求</h3>
+                    <ul>
+                        <li><strong>Node.js</strong> 18.0.0 或更高版本</li>
+                        <li><strong>npm</strong> 8.0.0 或更高版本</li>
+                        <li><strong>Git</strong> (用于安装和更新)</li>
+                    </ul>
+
+                    <h2>🚀 安装步骤</h2>
+                    
+                    <h3>步骤1：安装Node.js和npm</h3>
+                    
+                    <h4>macOS (使用Homebrew)</h4>
+                    <pre><code># 安装Homebrew (如果尚未安装)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# 安装Node.js
+brew install node</code></pre>
+
+                    <h4>Linux (Ubuntu/Debian)</h4>
+                    <pre><code># 更新包列表
+sudo apt update
+
+# 安装Node.js
+sudo apt install nodejs npm
+
+# 验证安装
+node --version
+npm --version</code></pre>
+
+                    <h4>Windows</h4>
+                    <ol>
+                        <li>下载Node.js安装包从 <a href="https://nodejs.org">nodejs.org</a></li>
+                        <li>运行安装程序，选择"Add to PATH"选项</li>
+                        <li>或使用WSL2安装Ubuntu，然后按Linux步骤操作</li>
+                    </ol>
+
+                    <h3>步骤2：安装OpenClaw</h3>
+                    <pre><code># 使用npm全局安装OpenClaw
+npm install -g openclaw
+
+# 验证安装
+openclaw --version</code></pre>
+
+                    <p>如果安装成功，你应该看到类似输出：</p>
+                    <pre><code>openclaw/1.0.0 darwin-arm64 node-v18.17.0</code></pre>
+
+                    <h3>步骤3：初始化配置</h3>
+                    <pre><code># 创建OpenClaw配置目录
+mkdir -p ~/.openclaw
+
+# 初始化配置
+openclaw init</code></pre>
+
+                    <p>初始化过程会：</p>
+                    <ol>
+                        <li>创建默认配置文件</li>
+                        <li>设置工作目录</li>
+                        <li>下载必要资源</li>
+                    </ol>
+
+                    <h2>⚙️ 基础配置</h2>
+                    
+                    <h3>配置文件位置</h3>
+                    <p>OpenClaw的主要配置文件位于：</p>
+                    <ul>
+                        <li><code>~/.openclaw/openclaw.json</code> - 主配置文件</li>
+                        <li><code>~/.openclaw/workspace/</code> - 工作目录</li>
+                    </ul>
+
+                    <h3>基本配置示例</h3>
+                    <p>打开配置文件进行编辑：</p>
+                    <pre><code># 使用你喜欢的编辑器
+nano ~/.openclaw/openclaw.json</code></pre>
+
+                    <p>基础配置内容：</p>
+                    <pre><code>{
+  "model": "deepseek/deepseek-chat",
+  "maxTokens": 2000,
+  "temperature": 0.7,
+  "workspace": "~/.openclaw/workspace",
+  "logLevel": "info"
+}</code></pre>
+
+                    <h2>🧪 功能测试</h2>
+                    
+                    <h3>测试1：基础对话</h3>
+                    <pre><code># 启动OpenClaw对话
+openclaw chat</code></pre>
+
+                    <p>输入一些测试问题：</p>
+                    <pre><code>你好，我是谁？
+今天天气怎么样？
+1+1等于多少？</code></pre>
+
+                    <p>如果正常回复，说明基础功能正常。</p>
+
+                    <h3>测试2：文件操作</h3>
+                    <pre><code># 创建一个测试文件
+echo "测试内容" > ~/.openclaw/workspace/test.txt
+
+# 让OpenClaw读取文件
+openclaw chat
+# 输入：请读取test.txt文件内容</code></pre>
+
+                    <h2>🔧 常见问题解决</h2>
+                    
+                    <h3>问题1：安装失败</h3>
+                    <p><strong>症状</strong>: <code>npm install -g openclaw</code> 失败</p>
+                    <p><strong>解决方案</strong>:</p>
+                    <pre><code># 清理npm缓存
+npm cache clean --force
+
+# 使用管理员权限安装
+sudo npm install -g openclaw
+
+# 或使用nvm管理Node.js版本
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+nvm install 18
+nvm use 18
+npm install -g openclaw</code></pre>
+
+                    <h3>问题2：命令找不到</h3>
+                    <p><strong>症状</strong>: <code>openclaw: command not found</code></p>
+                    <p><strong>解决方案</strong>:</p>
+                    <pre><code># 检查Node.js全局安装路径
+npm config get prefix
+
+# 将该路径添加到PATH环境变量
+# 在 ~/.bashrc, ~/.zshrc 或 ~/.profile 中添加：
+export PATH="$PATH:$(npm config get prefix)/bin"
+
+# 重新加载配置
+source ~/.zshrc  # 或 source ~/.bashrc</code></pre>
+
+                    <h2>🎯 下一步学习</h2>
+                    
+                    <h3>基础掌握后建议</h3>
+                    <ol>
+                        <li><strong>学习技能安装和使用</strong></li>
+                        <li><strong>配置消息通道</strong> (如飞书、Telegram)</li>
+                        <li><strong>探索自动化工作流</strong></li>
+                        <li><strong>了解高级配置选项</strong></li>
+                    </ol>
+
+                    <h3>推荐学习路径</h3>
+                    <ul>
+                        <li><strong>本周</strong>: 掌握基础安装和配置</li>
+                        <li><strong>下周</strong>: 学习一个具体技能的使用</li>
+                        <li><strong>下月</strong>: 实现一个完整的自动化项目</li>
+                    </ul>
+
+                    <div class="note">
+                        <p><strong>💡 提示</strong>: 本教程为免费内容，欢迎分享给其他学习者。付费教程提供更深入、更完整的实战指导。</p>
+                    </div>
+
+                    <div class="next-steps">
+                        <h3>🎉 恭喜！</h3>
+                        <p>你已经成功安装和配置了OpenClaw。现在你拥有一个功能完整的AI助手，可以开始探索更多高级功能了。</p>
+                        
+                        <div class="action-buttons">
+                            <a href="/openclaw-guide/tutorials/" class="btn-buy">返回教程中心</a>
+                            <a href="/openclaw-guide/" class="btn-buy">返回首页</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>学习资源</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/tutorials/">教程中心</a></li>
+                        <li><a href="/openclaw-guide/tutorials/free/getting-started">免费教程</a></li>
+                        <li><a href="/openclaw-guide/tutorials/paid/feishu-integration">付费教程</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>法律条款</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/privacy/">隐私政策</a></li>
+                        <li><a href="/openclaw-guide/terms/">使用条款</a></li>
+                        <li><a href="/openclaw-guide/refund/">退款政策</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/about/">关于我们</a></li>
+                        <li><a href="/openclaw-guide/contact/">联系我们</a></li>
+                        <li><a href="https://discord.gg/clawd">社区支持</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 OpenClaw Guide. 保留所有权利。</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
