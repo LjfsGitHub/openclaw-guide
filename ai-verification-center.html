@@ -647,6 +647,16 @@ setTimeout(() => {
 
         // 清除验证状态
         function clearVerification() {
+    // 清除验证状态
+    function clearVerificationState() {
+        localStorage.removeItem('openclaw_ai_verified');
+        localStorage.removeItem('openclaw_verification_time');
+        localStorage.removeItem('openclaw_verification_method');
+        localStorage.removeItem('openclaw_download_history');
+        
+        alert('验证状态已清除，页面将刷新重新开始验证流程。');
+        location.reload();
+    }
             localStorage.removeItem('openclaw_ai_verified');
             localStorage.removeItem('openclaw_verification_time');
             localStorage.removeItem('openclaw_verification_method');
@@ -658,6 +668,14 @@ setTimeout(() => {
 
         // 页面加载时检查验证状态
         document.addEventListener('DOMContentLoaded', function() {
+        // 检查是否已审核通过
+        const isVerified = localStorage.getItem('openclaw_ai_verified') === 'true';
+        const verificationTime = localStorage.getItem('openclaw_verification_time');
+        
+        if (isVerified && verificationTime) {
+            // 已审核用户，显示欢迎回来界面
+            showWelcomeBack(verificationTime);
+        }
             const isVerified = localStorage.getItem('openclaw_ai_verified') === 'true';
             
             if (isVerified) {
@@ -682,6 +700,51 @@ setTimeout(() => {
         });
 
         // 实际AI审核函数（需要后端支持）
+    // 显示欢迎回来界面（已审核用户）
+    // 这个函数在用户已审核通过时显示，无需重新验证
+    function showWelcomeBack(verificationTime) {
+        const timeStr = new Date(verificationTime).toLocaleString();
+        
+        // 隐藏上传区域
+        document.getElementById('verificationContainer').style.display = 'none';
+        
+        // 显示欢迎回来界面
+        const welcomeHtml = `
+        <div class="verified-user-container" style="max-width: 600px; margin: 0 auto;">
+            <div style="text-align: center; padding: var(--space-8);">
+                <div style="font-size: var(--font-size-4xl); margin-bottom: var(--space-4);">🎉</div>
+                <h2>欢迎回来！</h2>
+                <p class="text-secondary">
+                    检测到您已通过AI审核，无需重新验证。
+                </p>
+                <div class="verified-badge-large" style="background: linear-gradient(135deg, #4cd964 0%, #2ecc71 100%); color: white; padding: var(--space-3) var(--space-6); border-radius: var(--radius-full); font-size: var(--font-size-lg); font-weight: 700; display: inline-flex; align-items: center; gap: var(--space-3); margin: var(--space-6) auto;">
+                    <span>✅</span>
+                    <span>已验证会员</span>
+                </div>
+                <p class="text-tertiary mt-2" style="font-size: var(--font-size-sm);">
+                    验证时间: ${timeStr}
+                </p>
+                <div class="mt-8">
+                    <a href="/openclaw-guide/file-download.html" class="btn btn-primary btn-lg">
+                        🚀 进入下载中心
+                    </a>
+                    <p class="text-tertiary mt-2" style="font-size: var(--font-size-sm);">
+                        点击上方按钮进入文件下载中心
+                    </p>
+                </div>
+                <div class="mt-6">
+                    <button onclick="clearVerificationState()" class="btn btn-secondary">
+                        清除验证状态（测试用）
+                    </button>
+                    <p class="text-tertiary mt-2" style="font-size: var(--font-size-xs);">
+                        清除后可以重新测试上传流程
+                    </p>
+                </div>
+            </div>
+        `;
+        
+        document.querySelector('.container').innerHTML = welcomeHtml;
+    }
         async function realAIAnalysis(imageData) {
             // 实际实现应该：
             // 1. 发送图片到后端API
