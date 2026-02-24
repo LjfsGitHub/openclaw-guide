@@ -159,6 +159,12 @@ defaults:
     values:
       layout: "tutorial"
       category: "paid"
+  - scope:
+      path: "blog"
+      type: "pages"
+    values:
+      layout: "page"
+      permalink: /:path/
 
 # 构建排除
 exclude:
