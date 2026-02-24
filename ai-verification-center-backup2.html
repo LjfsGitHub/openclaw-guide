@@ -179,19 +179,6 @@
                 </div>
 
                 <!-- Upload Area -->
-            <!-- 已支付用户快速通道 -->
-            <div style="background: linear-gradient(135deg, #4cd964 0%, #2ecc71 100%); color: white; border-radius: var(--radius-md); padding: var(--space-6); text-align: center; margin-bottom: var(--space-8);">
-                <h3 style="color: white; margin-bottom: var(--space-3);">🚀 已支付用户快速通道</h3>
-                <p style="opacity: 0.9; margin-bottom: var(--space-4);">
-                    如果您已经支付¥9.9，可以直接进入下载中心，无需上传截图。
-                </p>
-                <a href="/openclaw-guide/file-download.html" class="btn" style="background: white; color: #4cd964; font-weight: 600; padding: var(--space-3) var(--space-8);">
-                    ✅ 我已支付，直接下载
-                </a>
-                <p class="text-tertiary mt-3" style="font-size: var(--font-size-sm); opacity: 0.8;">
-                    点击上方按钮直接进入文件下载中心
-                </p>
-            </div>
                 <div class="upload-area" id="uploadArea">
                     <div class="upload-icon">📱</div>
                     <h3>点击或拖拽上传支付截图</h3>
@@ -498,33 +485,7 @@
         // 模拟AI分析（实际应该调用后端API）
         function simulateAIAnalysis() {
             // 模拟AI分析时间
-            // 显示成功消息
-afResult.innerHTML = `
-                <div class="result-success">
-                    <div style="font-size: var(--font-size-3xl); margin-bottom: var(--space-4);">✅</div>
-                    <h3>AI审核通过！</h3>
-                    <p>支付截图已验证成功，金额¥9.9确认有效。</p>
-                    <p class="text-tertiary" style="font-size: var(--font-size-sm); margin-top: var(--space-2);">
-                        验证时间: ${new Date().toLocaleString()}
-                    </p>
-                    <div class="mt-4" style="background: rgba(0, 122, 255, 0.1); padding: var(--space-4); border-radius: var(--radius-md);">
-                        <p style="color: var(--apple-blue); font-weight: 600;">
-                            🚀 3秒后自动跳转到下载页面...
-                        </p>
-                        <div style="width: 100%; height: 4px; background: rgba(0, 122, 255, 0.2); border-radius: var(--radius-full); margin-top: var(--space-2); overflow: hidden;">
-                            <div id="countdownBar" style="width: 0%; height: 100%; background: var(--apple-blue); transition: width 3s linear;"></div>
-                        </div>
-                    </div>
-                </div>
-            `;
-aiResult.style.display = "block";
-
-// 启动倒计时进度条
-const countdownBar = document.getElementById("countdownBar");
-countdownBar.style.width = "100%";
-
-// 3秒后自动跳转
-setTimeout(() => {
+            setTimeout(() => {
                 aiProcessing.style.display = 'none';
                 
                 // 模拟AI审核结果（90%通过率）
@@ -560,34 +521,8 @@ setTimeout(() => {
             `;
             aiResult.style.display = 'block';
             
-            // 显示成功消息并自动跳转
-            // 显示成功消息
-afResult.innerHTML = `
-                <div class="result-success">
-                    <div style="font-size: var(--font-size-3xl); margin-bottom: var(--space-4);">✅</div>
-                    <h3>AI审核通过！</h3>
-                    <p>支付截图已验证成功，金额¥9.9确认有效。</p>
-                    <p class="text-tertiary" style="font-size: var(--font-size-sm); margin-top: var(--space-2);">
-                        验证时间: ${new Date().toLocaleString()}
-                    </p>
-                    <div class="mt-4" style="background: rgba(0, 122, 255, 0.1); padding: var(--space-4); border-radius: var(--radius-md);">
-                        <p style="color: var(--apple-blue); font-weight: 600;">
-                            🚀 3秒后自动跳转到下载页面...
-                        </p>
-                        <div style="width: 100%; height: 4px; background: rgba(0, 122, 255, 0.2); border-radius: var(--radius-full); margin-top: var(--space-2); overflow: hidden;">
-                            <div id="countdownBar" style="width: 0%; height: 100%; background: var(--apple-blue); transition: width 3s linear;"></div>
-                        </div>
-                    </div>
-                </div>
-            `;
-aiResult.style.display = "block";
-
-// 启动倒计时进度条
-const countdownBar = document.getElementById("countdownBar");
-countdownBar.style.width = "100%";
-
-// 3秒后自动跳转
-setTimeout(() => {
+            // 2秒后显示下载区域
+            setTimeout(() => {
                 verificationContainer.style.display = 'none';
                 downloadSection.style.display = 'block';
             }, 2000);
@@ -683,33 +618,7 @@ setTimeout(() => {
             
             // 模拟API调用
             return new Promise((resolve) => {
-                // 显示成功消息
-afResult.innerHTML = `
-                <div class="result-success">
-                    <div style="font-size: var(--font-size-3xl); margin-bottom: var(--space-4);">✅</div>
-                    <h3>AI审核通过！</h3>
-                    <p>支付截图已验证成功，金额¥9.9确认有效。</p>
-                    <p class="text-tertiary" style="font-size: var(--font-size-sm); margin-top: var(--space-2);">
-                        验证时间: ${new Date().toLocaleString()}
-                    </p>
-                    <div class="mt-4" style="background: rgba(0, 122, 255, 0.1); padding: var(--space-4); border-radius: var(--radius-md);">
-                        <p style="color: var(--apple-blue); font-weight: 600;">
-                            🚀 3秒后自动跳转到下载页面...
-                        </p>
-                        <div style="width: 100%; height: 4px; background: rgba(0, 122, 255, 0.2); border-radius: var(--radius-full); margin-top: var(--space-2); overflow: hidden;">
-                            <div id="countdownBar" style="width: 0%; height: 100%; background: var(--apple-blue); transition: width 3s linear;"></div>
-                        </div>
-                    </div>
-                </div>
-            `;
-aiResult.style.display = "block";
-
-// 启动倒计时进度条
-const countdownBar = document.getElementById("countdownBar");
-countdownBar.style.width = "100%";
-
-// 3秒后自动跳转
-setTimeout(() => {
+                setTimeout(() => {
                     // 模拟OCR结果
                     const mockOCRText = "支付宝 支付成功 金额: ¥9.9 时间: 2026-02-24 20:45:30";
                     

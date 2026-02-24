@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会员专属入口 | OpenClaw Guide</title>
+    <link rel="stylesheet" href="/openclaw-guide/assets/css/apple-style.css">
+    <style>
+        .member-access-container {
+            max-width: 500px;
+            margin: var(--space-12) auto;
+            padding: var(--space-8);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            text-align: center;
+        }
+        
+        .member-badge {
+            background: linear-gradient(135deg, #4cd964 0%, #2ecc71 100%);
+            color: white;
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+        }
+        
+        .access-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-6);
+            margin: var(--space-8) 0;
+        }
+        
+        .access-option {
+            background: var(--bg-primary);
+            border: 2px solid var(--apple-blue);
+            border-radius: var(--radius-md);
+            padding: var(--space-6);
+            transition: all var(--transition-normal);
+            text-align: center;
+        }
+        
+        .access-option:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .option-icon {
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--space-4);
+        }
+        
+        .option-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            background: var(--apple-blue);
+            color: white;
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: var(--space-4);
+            transition: all var(--transition-normal);
+        }
+        
+        .option-btn:hover {
+            background: var(--apple-blue-dark);
+            transform: translateY(-2px);
+        }
+        
+        .quick-note {
+            background: rgba(76, 217, 100, 0.1);
+            border: 2px solid #4cd964;
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            margin-top: var(--space-6);
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="header-content">
+            <a href="/openclaw-guide/" class="logo">
+                <span>🦐</span>
+                <span>OpenClaw Guide</span>
+            </a>
+            <nav class="nav">
+                <ul>
+                    <li><a href="/openclaw-guide/">首页</a></li>
+                    <li><a href="/openclaw-guide/#tutorials">免费教程</a></li>
+                    <li><a href="/openclaw-guide/paid-tutorials/feishu-integration.html">付费教程</a></li>
+                    <li><a href="/openclaw-guide/member-access.html" style="color: #4cd964; font-weight: 600;">会员入口</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="tutorial-content">
+        <div class="container">
+            <div class="member-access-container">
+                <div class="member-badge">
+                    <span>🎉</span>
+                    <span>OpenClaw Guide 会员专属</span>
+                </div>
+                
+                <h1>欢迎回来，尊贵的会员！</h1>
+                <p class="lead text-secondary">
+                    感谢您支付¥9.9支持OpenClaw Guide。<br>
+                    请选择以下方式获取您的教程内容。
+                </p>
+                
+                <div class="access-options">
+                    <!-- 选项1：直接下载 -->
+                    <div class="access-option">
+                        <div class="option-icon">🚀</div>
+                        <h3>快速下载通道</h3>
+                        <p class="text-secondary">
+                            直接进入下载中心，立即获取所有教程内容。
+                        </p>
+                        <a href="/openclaw-guide/file-download.html" class="option-btn">
+                            <span>📥</span>
+                            <span>立即下载所有教程</span>
+                        </a>
+                        <p class="text-tertiary mt-2" style="font-size: var(--font-size-sm);">
+                            适合：已支付用户快速获取内容
+                        </p>
+                    </div>
+                    
+                    <!-- 选项2：AI审核 -->
+                    <div class="access-option">
+                        <div class="option-icon">🤖</div>
+                        <h3>AI审核验证</h3>
+                        <p class="text-secondary">
+                            上传支付截图，AI自动验证后获取教程。
+                        </p>
+                        <a href="/openclaw-guide/ai-verification-center.html" class="option-btn">
+                            <span>📱</span>
+                            <span>上传截图验证</span>
+                        </a>
+                        <p class="text-tertiary mt-2" style="font-size: var(--font-size-sm);">
+                            适合：首次访问，需要验证支付
+                        </p>
+                    </div>
+                    
+                    <!-- 选项3：凭证验证 -->
+                    <div class="access-option">
+                        <div class="option-icon">🔑</div>
+                        <h3>凭证验证</h3>
+                        <p class="text-secondary">
+                            输入支付凭证号，验证后获取教程。
+                        </p>
+                        <div style="margin-top: var(--space-4);">
+                            <div class="verified-badge" style="background: var(--apple-blue); color: white; padding: var(--space-2) var(--space-4); border-radius: var(--radius-full); font-size: var(--font-size-sm); font-weight: 600; display: inline-flex; align-items: center; gap: var(--space-2);">
+                                <span>🔄</span>
+                                <span>开发中，即将上线</span>
+                            </div>
+                        </div>
+                        <p class="text-tertiary mt-2" style="font-size: var(--font-size-sm);">
+                            未来功能：输入支付宝订单号直接验证
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="quick-note">
+                    <h4>💡 使用说明</h4>
+                    <ul style="margin-top: var(--space-2);">
+                        <li><strong>首次访问</strong>：建议使用"AI审核验证"</li>
+                        <li><strong>已验证用户</strong>：直接使用"快速下载通道"</li>
+                        <li><strong>遇到问题</strong>：通过网站联系页面获取支持</li>
+                        <li><strong>内容更新</strong>：所有教程会持续更新，会员免费获取</li>
+                    </ul>
+                </div>
+                
+                <!-- 教程内容预览 -->
+                <div class="mt-8">
+                    <h4>🎯 您将获得的内容</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; margin-top: var(--space-4);">
+                        <span class="verified-badge" style="background: var(--apple-blue); color: white; padding: var(--space-2) var(--space-4); border-radius: var(--radius-full); font-size: var(--font-size-sm); font-weight: 600;">
+                            📖 Feishu集成指南
+                        </span>
+                        <span class="verified-badge" style="background: var(--apple-blue); color: white; padding: var(--space-2) var(--space-4); border-radius: var(--radius-full); font-size: var(--font-size-sm); font-weight: 600;">
+                            🏢 高级配置指南
+                        </span>
+                        <span class="verified-badge" style="background: var(--apple-blue); color: white; padding: var(--space-2) var(--space-4); border-radius: var(--radius-full); font-size: var(--font-size-sm); font-weight: 600;">
+                            🛠️ 技能开发工具包
+                        </span>
+                        <span class="verified-badge" style="background: var(--apple-blue); color: white; padding: var(--space-2) var(--space-4); border-radius: var(--radius-full); font-size: var(--font-size-sm); font-weight: 600;">
+                            🔄 未来更新
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- 技术支持 -->
+                <div class="text-center mt-8">
+                    <p class="text-secondary">
+                        需要帮助？请随时联系我们。
+                    </p>
+                    <a href="/openclaw-guide/contact/" class="btn btn-secondary mt-3">
+                        联系技术支持
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>会员服务</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/member-access.html">会员入口</a></li>
+                        <li><a href="/openclaw-guide/file-download.html">下载中心</a></li>
+                        <li><a href="/openclaw-guide/ai-verification-center.html">AI审核</a></li>
+                        <li><a href="/openclaw-guide/contact/">会员支持</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>学习资源</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/tutorials/">教程中心</a></li>
+                        <li><a href="/openclaw-guide/html-tutorials/getting-started.html">免费教程</a></li>
+                        <li><a href="/openclaw-guide/paid-tutorials/feishu-integration.html">付费教程</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 OpenClaw Guide. 保留所有权利。</p>
+                <p class="text-tertiary mt-2">会员专属服务 - 一次支付，永久访问</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
