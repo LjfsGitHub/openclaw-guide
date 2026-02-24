@@ -1,8 +1,36 @@
 # OpenClaw Guide 网站配置
-title: "OpenClaw Guide"
-description: "OpenClaw官方教程和文档 - 从入门到精通"
+title: "OpenClaw Guide - 官方教程和文档平台"
+description: "OpenClaw AI助手完整教程体系：从零开始掌握集成、开发、部署。提供免费入门指南和高级付费教程，帮助用户和开发者快速上手OpenClaw。"
 baseurl: "" # 子目录路径，如果没有请留空
-url: "https://openclaw.guide" # 你的域名
+url: "https://ljfsgithub.github.io/openclaw-guide" # 当前GitHub Pages地址
+future_domain: "https://openclaw.guide" # 计划中的正式域名
+
+# 多语言支持（未来扩展）
+lang: "zh-CN"
+locale: "zh_CN"
+timezone: "Asia/Shanghai"
+
+# 作者和团队信息
+author:
+  name: "OpenClaw Guide Team"
+  email: "contact@openclaw.guide"
+  twitter: "@openclaw_guide"
+  github: "LjfsGitHub"
+  description: "专注于OpenClaw AI助手教程和文档的技术团队"
+
+# 社交媒体链接
+social:
+  name: "OpenClaw Guide"
+  links:
+    - "https://github.com/LjfsGitHub"
+    - "https://twitter.com/openclaw_guide"
+    - "https://discord.gg/clawd"
+
+# 网站图标和品牌
+favicon: "/assets/images/favicon.ico"
+logo: "/assets/images/logo.png"
+brand_color: "#4f46e5"
+accent_color: "#10b981"
 
 # 构建设置
 markdown: kramdown
@@ -15,35 +43,109 @@ author:
   email: "contact@openclaw.guide"
   twitter: "openclaw_guide"
 
-# 导航
+# 网站导航
 navigation:
   - title: "首页"
     url: "/"
-  - title: "教程"
-    url: "/tutorials/"
+    icon: "🏠"
+  - title: "免费教程"
+    url: "/tutorials/free/"
+    icon: "📚"
+  - title: "付费教程"
+    url: "/tutorials/paid/"
+    icon: "💰"
   - title: "博客"
     url: "/blog/"
-  - title: "资源"
-    url: "/resources/"
-  - title: "定价"
-    url: "/pricing/"
+    icon: "📝"
+  - title: "关于我们"
+    url: "/about/"
+    icon: "👥"
+  - title: "联系我们"
+    url: "/contact/"
+    icon: "📞"
 
-# 社交媒体
-social:
-  github: "openclaw"
-  twitter: "openclaw_guide"
-  discord: "https://discord.gg/clawd"
+# 页脚导航
+footer_navigation:
+  - title: "学习资源"
+    links:
+      - name: "入门指南"
+        url: "/tutorials/getting-started/"
+      - name: "常见问题"
+        url: "/faq/"
+      - name: "最佳实践"
+        url: "/best-practices/"
+  - title: "法律条款"
+    links:
+      - name: "隐私政策"
+        url: "/privacy/"
+      - name: "使用条款"
+        url: "/terms/"
+      - name: "退款政策"
+        url: "/refund-policy/"
+  - title: "公司信息"
+    links:
+      - name: "关于我们"
+        url: "/about/"
+      - name: "联系我们"
+        url: "/contact/"
+      - name: "合作伙伴"
+        url: "/partners/"
 
-# 插件
+# Jekyll插件
 plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-feed
+  - jekyll-paginate
 
-# SEO设置
+# SEO优化设置
 seo:
-  title: "OpenClaw Guide - 官方教程和文档"
-  description: "学习OpenClaw集成、开发、部署的最佳实践和实战教程"
-  keywords: "OpenClaw, AI助手, 教程, 文档, 集成, 开发"
+  title: "OpenClaw Guide - AI助手完整教程平台"
+  description: "OpenClaw官方教程和文档，提供从入门到精通的完整学习路径。免费教程、付费指南、实战案例，帮助您快速掌握OpenClaw集成和开发。"
+  keywords: 
+    - "OpenClaw"
+    - "AI助手"
+    - "教程"
+    - "文档"
+    - "集成"
+    - "开发"
+    - "部署"
+    - "Feishu集成"
+    - "Telegram机器人"
+    - "技能开发"
+  og:
+    image: "/assets/images/og-image.png"
+    type: "website"
+  twitter:
+    card: "summary_large_image"
+    site: "@openclaw_guide"
+
+# 分析跟踪
+analytics:
+  google: "" # 后续添加GA4 ID
+  plausible: "" # 可选：Plausible Analytics
+
+# 评论系统（未来扩展）
+comments:
+  provider: "disqus" # 或giscus
+  enabled: false
+
+# 搜索功能
+search:
+  enabled: true
+  provider: "simple" # 未来可升级为algolia
+
+# 分页设置
+paginate: 10
+paginate_path: "/blog/page:num/"
+
+# 构建排除
+exclude:
+  - "node_modules"
+  - "vendor"
+  - "*.gem"
+  - ".git"
+  - ".svn"
 
 # 评论系统 (可选)
 comments: false
