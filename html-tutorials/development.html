@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw技能开发指南 - OpenClaw Guide</title>
+    <link rel="stylesheet" href="/openclaw-guide/assets/css/style.css">
+    <meta name="description" content="学习如何开发自定义OpenClaw技能，扩展AI助手功能，满足个性化需求。">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <a href="/openclaw-guide/" class="logo">🦐 OpenClaw Guide</a>
+                <nav>
+                    <ul>
+                        <li><a href="/openclaw-guide/">首页</a></li>
+                        <li><a href="/openclaw-guide/tutorials/">教程中心</a></li>
+                        <li><a href="/openclaw-guide/about/">关于我们</a></li>
+                        <li><a href="/openclaw-guide/contact/">联系我们</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <article class="tutorial-content">
+                <h1>OpenClaw技能开发指南</h1>
+                
+                <div class="meta-info">
+                    <span>📅 发布日期: 2026年2月24日</span>
+                    <span>⏱️ 预计时间: 30分钟</span>
+                    <span>🎯 难度: 中级</span>
+                    <span>🆓 类型: 免费教程</span>
+                </div>
+
+                <div class="content">
+                    <h2>🎯 教程目标</h2>
+                    <p>通过本教程，你将学会如何开发自定义OpenClaw技能，扩展AI助手功能，满足特定业务需求。</p>
+                    
+                    <h3>你将学会：</h3>
+                    <ul>
+                        <li>✅ OpenClaw技能架构理解</li>
+                        <li>✅ 基础技能开发流程</li>
+                        <li>✅ 技能配置和测试</li>
+                        <li>✅ 发布和维护技能</li>
+                    </ul>
+
+                    <h2>📋 技能开发基础</h2>
+                    
+                    <h3>什么是OpenClaw技能？</h3>
+                    <p>OpenClaw技能是扩展AI助手功能的插件模块，可以：</p>
+                    <ul>
+                        <li><strong>集成外部服务</strong> - 如日历、邮件、API</li>
+                        <li><strong>添加新功能</strong> - 如计算、翻译、分析</li>
+                        <li><strong>自动化工作流</strong> - 如数据处理、通知发送</li>
+                        <li><strong>定制用户体验</strong> - 如个性化回复、界面扩展</li>
+                    </ul>
+
+                    <h3>技能类型</h3>
+                    <ul>
+                        <li><strong>工具技能</strong> - 提供特定工具功能</li>
+                        <li><strong>集成技能</strong> - 连接外部系统</li>
+                        <li><strong>自动化技能</strong> - 自动执行任务</li>
+                        <li><strong>分析技能</strong> - 数据分析和报告</li>
+                    </ul>
+
+                    <h2>🚀 开发环境准备</h2>
+                    
+                    <h3>系统要求</h3>
+                    <ul>
+                        <li><strong>Node.js</strong> 18.0.0+</li>
+                        <li><strong>npm</strong> 8.0.0+ 或 <strong>yarn</strong></li>
+                        <li><strong>Git</strong> 版本控制</li>
+                        <li><strong>代码编辑器</strong> - VS Code推荐</li>
+                    </ul>
+
+                    <h3>安装开发工具</h3>
+                    <pre><code># 安装OpenClaw开发工具
+npm install -g @openclaw/cli
+
+# 验证安装
+openclaw --version
+
+# 创建开发工作区
+mkdir my-openclaw-skills
+cd my-openclaw-skills</code></pre>
+
+                    <h2>🔧 创建第一个技能</h2>
+                    
+                    <h3>步骤1：初始化技能项目</h3>
+                    <pre><code># 使用OpenClaw CLI创建技能模板
+openclaw skill create my-first-skill
+
+# 或手动创建结构
+mkdir my-first-skill
+cd my-first-skill
+npm init -y</code></pre>
+
+                    <h3>步骤2：技能文件结构</h3>
+                    <pre><code>my-first-skill/
+├── index.js          # 主技能文件
+├── package.json      # 项目配置
+├── README.md         # 文档
+├── tests/            # 测试文件
+└── examples/         # 使用示例</code></pre>
+
+                    <h3>步骤3：编写技能代码</h3>
+                    <p><strong>index.js 示例</strong>:</p>
+                    <pre><code>module.exports = {
+  name: 'my-first-skill',
+  version: '1.0.0',
+  description: '我的第一个OpenClaw技能',
+  
+  // 技能配置
+  config: {
+    enabled: true,
+    permissions: ['read', 'write']
+  },
+  
+  // 技能命令处理
+  commands: {
+    hello: {
+      description: '打招呼',
+      handler: async (context, args) => {
+        return `你好，${args.name || '朋友'}！我是你的OpenClaw助手。`;
+      }
+    },
+    
+    calculate: {
+      description: '简单计算',
+      handler: async (context, args) => {
+        const { operation, a, b } = args;
+        let result;
+        
+        switch(operation) {
+          case 'add':
+            result = Number(a) + Number(b);
+            break;
+          case 'subtract':
+            result = Number(a) - Number(b);
+            break;
+          case 'multiply':
+            result = Number(a) * Number(b);
+            break;
+          case 'divide':
+            result = Number(a) / Number(b);
+            break;
+          default:
+            return '不支持的操作';
+        }
+        
+        return `计算结果: ${result}`;
+      }
+    }
+  },
+  
+  // 初始化函数
+  init: async (context) => {
+    console.log('技能初始化完成');
+    return true;
+  }
+};</code></pre>
+
+                    <h2>🧪 测试和调试</h2>
+                    
+                    <h3>本地测试</h3>
+                    <pre><code># 安装技能到本地OpenClaw
+cd my-first-skill
+npm link
+
+# 或手动复制到技能目录
+cp -r my-first-skill ~/.openclaw/workspace/skills/
+
+# 重启OpenClaw服务
+openclaw gateway restart</code></pre>
+
+                    <h3>测试技能命令</h3>
+                    <pre><code># 启动OpenClaw对话
+openclaw chat
+
+# 测试技能命令
+你好，我是小明
+计算 add 10 20
+计算 multiply 5 6</code></pre>
+
+                    <h3>调试技巧</h3>
+                    <ul>
+                        <li><strong>查看日志</strong>: <code>tail -f /tmp/openclaw/openclaw-*.log</code></li>
+                        <li><strong>调试模式</strong>: <code>openclaw chat --debug</code></li>
+                        <li><strong>单元测试</strong>: 编写测试用例确保质量</li>
+                        <li><strong>错误处理</strong>: 完善的错误处理机制</li>
+                    </ul>
+
+                    <h2>📦 技能发布和维护</h2>
+                    
+                    <h3>发布到npm</h3>
+                    <pre><code># 登录npm
+npm login
+
+# 发布包
+npm publish
+
+# 或发布到GitHub Packages
+# 配置package.json的publishConfig</code></pre>
+
+                    <h3>版本管理</h3>
+                    <ul>
+                        <li><strong>语义化版本</strong>: MAJOR.MINOR.PATCH</li>
+                        <li><strong>更新日志</strong>: 记录所有变更</li>
+                        <li><strong>向后兼容</strong>: 尽量保持API兼容</li>
+                        <li><strong>废弃策略</strong>: 逐步淘汰旧功能</li>
+                    </ul>
+
+                    <h3>用户支持</h3>
+                    <ul>
+                        <li><strong>完整文档</strong>: README.md + API文档</li>
+                        <li><strong>使用示例</strong>: examples/目录</li>
+                        <li><strong>问题跟踪</strong>: GitHub Issues</li>
+                        <li><strong>社区支持</strong>: Discord/论坛</li>
+                    </ul>
+
+                    <h2>🎯 高级技能开发</h2>
+                    
+                    <h3>集成外部API</h3>
+                    <pre><code>// 示例: 集成天气API
+const axios = require('axios');
+
+module.exports = {
+  name: 'weather-skill',
+  commands: {
+    weather: {
+      description: '查询天气',
+      handler: async (context, args) => {
+        const { city } = args;
+        const response = await axios.get(
+          `https://api.weather.com/v1/forecast?city=${city}`
+        );
+        return `${city}天气: ${response.data.condition}, 温度: ${response.data.temperature}°C`;
+      }
+    }
+  }
+};</code></pre>
+
+                    <h3>数据库集成</h3>
+                    <pre><code>// 示例: 使用SQLite数据库
+const sqlite3 = require('sqlite3').verbose();
+
+module.exports = {
+  name: 'database-skill',
+  init: async () => {
+    this.db = new sqlite3.Database('./data.db');
+    // 初始化表结构
+  },
+  commands: {
+    save: {
+      description: '保存数据',
+      handler: async (context, args) => {
+        // 数据库操作
+      }
+    }
+  }
+};</code></pre>
+
+                    <h3>定时任务</h3>
+                    <pre><code>// 示例: 定时发送通知
+const cron = require('node-cron');
+
+module.exports = {
+  name: 'scheduler-skill',
+  init: async (context) => {
+    // 每天9点发送日报
+    cron.schedule('0 9 * * *', () => {
+      context.sendMessage('用户ID', '每日报告时间到了！');
+    });
+  }
+};</code></pre>
+
+                    <div class="note">
+                        <p><strong>💡 提示</strong>: 技能开发是OpenClaw最强大的功能之一。通过自定义技能，你可以让AI助手完全适应你的工作流程和业务需求。</p>
+                    </div>
+
+                    <div class="next-steps">
+                        <h3>🎉 下一步学习</h3>
+                        <p>掌握基础技能开发后，建议：</p>
+                        <ul>
+                            <li><strong>学习企业级部署</strong> - 团队协作和规模化</li>
+                            <li><strong>探索高级集成</strong> - 复杂系统对接</li>
+                            <li><strong>优化性能</strong> - 提高技能效率</li>
+                            <li><strong>贡献社区</strong> - 分享你的技能</li>
+                        </ul>
+                        
+                        <div class="action-buttons">
+                            <a href="/openclaw-guide/html-tutorials/enterprise.html" class="btn-buy">学习企业指南</a>
+                            <a href="/openclaw-guide/" class="btn-buy">返回首页</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>学习资源</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/tutorials/">教程中心</a></li>
+                        <li><a href="/openclaw-guide/html-tutorials/getting-started.html">免费教程</a></li>
+                        <li><a href="/openclaw-guide/tutorials/paid/feishu-integration">付费教程</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>法律条款</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/privacy/">隐私政策</a></li>
+                        <li><a href="/openclaw-guide/terms/">使用条款</a></li>
+                        <li><a href="/openclaw-guide/refund/">退款政策</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/about/">关于我们</a></li>
+                        <li><a href="/openclaw-guide/contact/">联系我们</a></li>
+                        <li><a href="https://discord.gg/clawd">社区支持</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 OpenClaw Guide. 保留所有权利。</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

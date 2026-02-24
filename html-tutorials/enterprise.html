@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw企业部署指南 - OpenClaw Guide</title>
+    <link rel="stylesheet" href="/openclaw-guide/assets/css/style.css">
+    <meta name="description" content="企业级OpenClaw部署、管理和优化指南，支持团队协作和规模化应用。">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <a href="/openclaw-guide/" class="logo">🦐 OpenClaw Guide</a>
+                <nav>
+                    <ul>
+                        <li><a href="/openclaw-guide/">首页</a></li>
+                        <li><a href="/openclaw-guide/tutorials/">教程中心</a></li>
+                        <li><a href="/openclaw-guide/about/">关于我们</a></li>
+                        <li><a href="/openclaw-guide/contact/">联系我们</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <article class="tutorial-content">
+                <h1>OpenClaw企业部署指南</h1>
+                
+                <div class="meta-info">
+                    <span>📅 发布日期: 2026年2月24日</span>
+                    <span>⏱️ 预计时间: 45分钟</span>
+                    <span>🎯 难度: 高级</span>
+                    <span>🆓 类型: 免费教程</span>
+                </div>
+
+                <div class="content">
+                    <h2>🎯 教程目标</h2>
+                    <p>通过本教程，你将掌握企业级OpenClaw部署、管理和优化的完整流程，支持团队协作和规模化应用。</p>
+                    
+                    <h3>你将完成：</h3>
+                    <ul>
+                        <li>✅ 企业架构设计</li>
+                        <li>✅ 团队权限管理</li>
+                        <li>✅ 高可用部署</li>
+                        <li>✅ 安全合规配置</li>
+                        <li>✅ 监控和维护</li>
+                    </ul>
+
+                    <h2>🏢 企业需求分析</h2>
+                    
+                    <h3>典型企业场景</h3>
+                    <ul>
+                        <li><strong>团队协作</strong> - 多人共享AI助手</li>
+                        <li><strong>部门集成</strong> - 跨部门工作流</li>
+                        <li><strong>数据安全</strong> - 敏感信息保护</li>
+                        <li><strong>合规要求</strong> - 法规和政策遵守</li>
+                        <li><strong>性能要求</strong> - 高并发和稳定性</li>
+                    </ul>
+
+                    <h3>企业级特性需求</h3>
+                    <ul>
+                        <li><strong>多用户支持</strong> - 用户管理和权限控制</li>
+                        <li><strong>审计日志</strong> - 操作记录和追溯</li>
+                        <li><strong>备份恢复</strong> - 数据保护和灾难恢复</li>
+                        <li><strong>监控告警</strong> - 系统状态实时监控</li>
+                        <li><strong>扩展性</strong> - 支持业务增长</li>
+                    </ul>
+
+                    <h2>🏗️ 企业架构设计</h2>
+                    
+                    <h3>单服务器架构</h3>
+                    <p><strong>适用场景</strong>: 中小团队，初期部署</p>
+                    <pre><code>┌─────────────────┐
+│   用户客户端     │
+│  (浏览器/APP)    │
+└────────┬────────┘
+         │
+┌────────▼────────┐
+│   OpenClaw服务   │
+│  (单节点部署)    │
+└────────┬────────┘
+         │
+┌────────▼────────┐
+│   数据库/存储    │
+└─────────────────┘</code></pre>
+
+                    <h3>高可用架构</h3>
+                    <p><strong>适用场景</strong>: 中大型企业，关键业务</p>
+                    <pre><code>┌─────────────────┐    ┌─────────────────┐
+│   负载均衡器     │◄───┤   用户客户端     │
+│   (Nginx/HA)    │    │  (浏览器/APP)    │
+└────────┬────────┘    └─────────────────┘
+         │
+    ┌────┴────┐
+┌───▼───┐ ┌───▼───┐
+│节点 A  │ │节点 B  │
+│OpenClaw│ │OpenClaw│
+└───┬───┘ └───┬───┘
+    │         │
+    └────┬────┘
+         │
+┌────────▼────────┐
+│  共享数据库/存储  │
+│ (MySQL/Redis/S3)│
+└─────────────────┘</code></pre>
+
+                    <h3>微服务架构</h3>
+                    <p><strong>适用场景</strong>: 大型企业，复杂需求</p>
+                    <pre><code>┌─────────────────┐
+│    API网关      │
+└────────┬────────┘
+    ┌────┴────┐
+┌───▼───┐ ┌───▼───┐
+│对话服务│ │技能服务│
+└───┬───┘ └───┬───┘
+    │         │
+┌───▼───┐ ┌───▼───┐
+│用户服务│ │集成服务│
+└───────┘ └───────┘
+    │         │
+┌───▼─────────▼───┐
+│   数据服务层     │
+│ (DB/Cache/Queue)│
+└─────────────────┘</code></pre>
+
+                    <h2>👥 团队权限管理</h2>
+                    
+                    <h3>用户角色设计</h3>
+                    <ul>
+                        <li><strong>管理员</strong> - 系统配置、用户管理、权限分配</li>
+                        <li><strong>开发者</strong> - 技能开发、集成配置、测试部署</li>
+                        <li><strong>用户</strong> - 日常使用、数据查询、任务执行</li>
+                        <li><strong>审计员</strong> - 日志查看、合规检查、安全审计</li>
+                    </ul>
+
+                    <h3>权限控制策略</h3>
+                    <pre><code># 示例: 基于角色的访问控制(RBAC)
+{
+  "roles": {
+    "admin": {
+      "permissions": ["*"]
+    },
+    "developer": {
+      "permissions": [
+        "skill:create",
+        "skill:update", 
+        "skill:test",
+        "config:read"
+      ]
+    },
+    "user": {
+      "permissions": [
+        "chat:send",
+        "file:read",
+        "tool:use"
+      ]
+    }
+  }
+}</code></pre>
+
+                    <h3>团队协作配置</h3>
+                    <pre><code># 团队配置文件示例
+{
+  "team": {
+    "name": "产品开发团队",
+    "members": [
+      {
+        "id": "user001",
+        "name": "张三",
+        "role": "admin",
+        "email": "zhangsan@company.com"
+      },
+      {
+        "id": "user002", 
+        "name": "李四",
+        "role": "developer",
+        "email": "lisi@company.com"
+      }
+    ],
+    "sharedSkills": ["github", "jira", "slack"],
+    "workspace": "/shared/team-workspace"
+  }
+}</code></pre>
+
+                    <h2>🔒 安全合规配置</h2>
+                    
+                    <h3>数据安全</h3>
+                    <ul>
+                        <li><strong>数据加密</strong> - 传输和存储加密</li>
+                        <li><strong>访问控制</strong> - 严格的权限管理</li>
+                        <li><strong>数据脱敏</strong> - 敏感信息保护</li>
+                        <li><strong>审计日志</strong> - 完整操作记录</li>
+                    </ul>
+
+                    <h3>合规要求</h3>
+                    <ul>
+                        <li><strong>GDPR</strong> - 欧盟数据保护条例</li>
+                        <li><strong>HIPAA</strong> - 医疗信息保护</li>
+                        <li><strong>PCI DSS</strong> - 支付卡行业标准</li>
+                        <li><strong>ISO 27001</strong> - 信息安全管理</li>
+                    </ul>
+
+                    <h3>安全配置示例</h3>
+                    <pre><code># 安全配置文件
+{
+  "security": {
+    "authentication": {
+      "type": "jwt",
+      "secret": "your-secret-key",
+      "expiresIn": "24h"
+    },
+    "encryption": {
+      "algorithm": "aes-256-gcm",
+      "key": "your-encryption-key"
+    },
+    "audit": {
+      "enabled": true,
+      "logLevel": "info",
+      "retentionDays": 90
+    },
+    "compliance": {
+      "gdpr": true,
+      "dataRetentionDays": 30,
+      "userConsent": true
+    }
+  }
+}</code></pre>
+
+                    <h2>🚀 部署实施</h2>
+                    
+                    <h3>Docker容器化部署</h3>
+                    <pre><code># Dockerfile示例
+FROM node:18-alpine
+
+WORKDIR /app
+
+# 复制应用文件
+COPY package*.json ./
+RUN npm ci --only=production
+
+COPY . .
+
+# 暴露端口
+EXPOSE 3000
+
+# 启动命令
+CMD ["node", "server.js"]
+
+# docker-compose.yml
+version: '3.8'
+services:
+  openclaw:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgres://user:pass@db:5432/openclaw
+    depends_on:
+      - db
+      - redis
+  
+  db:
+    image: postgres:14
+    environment:
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  
+  redis:
+    image: redis:7-alpine
+  
+volumes:
+  db-data:</code></pre>
+
+                    <h3>Kubernetes部署</h3>
+                    <pre><code># deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openclaw
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: openclaw
+  template:
+    metadata:
+      labels:
+        app: openclaw
+    spec:
+      containers:
+      - name: openclaw
+        image: openclaw:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: NODE_ENV
+          value: "production"
+
+# service.yaml  
+apiVersion: v1
+kind: Service
+metadata:
+  name: openclaw-service
+spec:
+  selector:
+    app: openclaw
+  ports:
+  - port: 80
+    targetPort: 3000
+  type: LoadBalancer</code></pre>
+
+                    <h2>📊 监控和维护</h2>
+                    
+                    <h3>系统监控</h3>
+                    <ul>
+                        <li><strong>性能监控</strong> - CPU、内存、磁盘、网络</li>
+                        <li><strong>应用监控</strong> - 响应时间、错误率、吞吐量</li>
+                        <li><strong>业务监控</strong> - 用户活跃、功能使用、满意度</li>
+                        <li><strong>安全监控</strong> - 异常访问、攻击尝试、合规检查</li>
+                    </ul>
+
+                    <h3>监控工具栈</h3>
+                    <pre><code># 推荐监控工具
+- 指标收集: Prometheus
+- 日志管理: ELK Stack (Elasticsearch, Logstash, Kibana)
+- 告警系统: Alertmanager
+- 可视化: Grafana
+- 应用性能: New Relic / Datadog
+- 安全监控: Wazuh / OSSEC</code></pre>
+
+                    <h3>维护计划</h3>
+                    <ul>
+                        <li><strong>日常维护</strong> - 日志检查、备份验证、性能监控</li>
+                        <li><strong>每周维护</strong> - 安全更新、漏洞扫描、容量规划</li>
+                        <li><strong>每月维护</strong> - 系统优化、数据清理、合规审计</li>
+                        <li><strong>季度维护</strong> - 架构评审、灾难恢复测试、培训更新</li>
+                    </ul>
+
+                    <h2>📈 性能优化</h2>
+                    
+                    <h3>数据库优化</h3>
+                    <ul>
+                        <li><strong>索引优化</strong> - 查询性能提升</li>
+                        <li><strong>连接池</strong> - 数据库连接管理</li>
+                        <li><strong>读写分离</strong> - 负载均衡</li>
+                        <li><strong>缓存策略</strong> - Redis/Memcached</li>
+                    </ul>
+
+                    <h3>应用优化</h3>
+                    <ul>
+                        <li><strong>代码优化</strong> - 算法和数据结构</li>
+                        <li><strong>异步处理</strong> - 非阻塞IO</li>
+                        <li><strong>压缩传输</strong> - Gzip/Brotli压缩</li>
+                        <li><strong>CDN加速</strong> - 静态资源分发</li>
+                    </ul>
+
+                    <h3>AI模型优化</h3>
+                    <ul>
+                        <li><strong>模型选择</strong> - 平衡速度和质量</li>
+                        <li><strong>提示词优化</strong> - 减少token使用</li>
+                        <li><strong>缓存响应</strong> - 重复问题缓存</li>
+                        <li><strong>批量处理</strong> - 提高吞吐量</li>
+                    </ul>
+
+                    <div class="note">
+                        <p><strong>💡 提示</strong>: 企业级部署需要综合考虑技术、安全、合规和运维多个方面。建议从简单架构开始，随着业务增长逐步优化。</p>
+                    </div>
+
+                    <div class="next-steps">
+                        <h3>🎉 下一步建议</h3>
+                        <p>完成企业部署后，建议：</p>
+                        <ul>
+                            <li><strong>制定运维手册</strong> - 标准化操作流程</li>
+                            <li><strong>建立应急响应</strong> - 故障处理机制</li>
+                            <li><strong>持续培训</strong> - 团队技能提升</li>
+                            <li><strong>定期评估</strong> - 系统优化改进</li>
+                        </ul>
+                        
+                        <div class="action-buttons">
+                            <a href="/openclaw-guide/html-tutorials/development.html" class="btn-buy">学习技能开发</a>
+                            <a href="/openclaw-guide/" class="btn-buy">返回首页</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>学习资源</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/tutorials/">教程中心</a></li>
+                        <li><a href="/openclaw-guide/html-tutorials/getting-started.html">免费教程</a></li>
+                        <li><a href="/openclaw-guide/tutorials/paid/feishu-integration">付费教程</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>法律条款</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/privacy/">隐私政策</a></li>
+                        <li><a href="/openclaw-guide/terms/">使用条款</a></li>
+                        <li><a href="/openclaw-guide/refund/">退款政策</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/about/">关于我们</a></li>
+                        <li><a href="/openclaw-guide/contact/">联系我们</a></li>
+                        <li><a href="https://discord.gg/clawd">社区支持</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 OpenClaw Guide. 保留所有权利。</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
