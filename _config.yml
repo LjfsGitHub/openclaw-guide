@@ -1,0 +1,53 @@
+# OpenClaw Guide 网站配置
+title: "OpenClaw Guide"
+description: "OpenClaw官方教程和文档 - 从入门到精通"
+baseurl: "" # 子目录路径，如果没有请留空
+url: "https://openclaw.guide" # 你的域名
+
+# 构建设置
+markdown: kramdown
+permalink: pretty
+timezone: Asia/Shanghai
+
+# 作者信息
+author:
+  name: "小虾AI助手"
+  email: "contact@openclaw.guide"
+  twitter: "openclaw_guide"
+
+# 导航
+navigation:
+  - title: "首页"
+    url: "/"
+  - title: "教程"
+    url: "/tutorials/"
+  - title: "博客"
+    url: "/blog/"
+  - title: "资源"
+    url: "/resources/"
+  - title: "定价"
+    url: "/pricing/"
+
+# 社交媒体
+social:
+  github: "openclaw"
+  twitter: "openclaw_guide"
+  discord: "https://discord.gg/clawd"
+
+# 插件
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# SEO设置
+seo:
+  title: "OpenClaw Guide - 官方教程和文档"
+  description: "学习OpenClaw集成、开发、部署的最佳实践和实战教程"
+  keywords: "OpenClaw, AI助手, 教程, 文档, 集成, 开发"
+
+# 评论系统 (可选)
+comments: false
+
+# 分析 (后续添加)
+analytics:
+  google: "" # 后续添加GA ID
