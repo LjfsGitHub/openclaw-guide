@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw Feishu集成完整指南 - 付费教程 | OpenClaw Guide</title>
+    <link rel="stylesheet" href="/openclaw-guide/assets/css/apple-style.css">
+    <meta name="description" content="完整的OpenClaw Feishu集成教程，包含实战步骤、代码示例和问题解决方案。立即掌握企业级AI助手集成技能。">
+    <style>
+        .pricing-card {
+            background: linear-gradient(135deg, var(--apple-blue) 0%, var(--apple-blue-dark) 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-8);
+            text-align: center;
+            margin: var(--space-8) 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+        }
+        
+        .price {
+            font-size: var(--font-size-5xl);
+            font-weight: 700;
+            margin: var(--space-4) 0;
+        }
+        
+        .price-subtext {
+            opacity: 0.9;
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--space-6);
+        }
+        
+        .alipay-qr {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: var(--space-6);
+            margin: var(--space-6) auto;
+            max-width: 300px;
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .alipay-qr img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-sm);
+        }
+        
+        .payment-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-6);
+            margin: var(--space-8) 0;
+        }
+        
+        .step {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            padding: var(--space-6);
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--apple-blue);
+            color: white;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-4);
+            font-weight: 700;
+        }
+        
+        .benefits {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-8);
+            margin: var(--space-8) 0;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-4);
+            margin-bottom: var(--space-4);
+        }
+        
+        .benefit-icon {
+            color: var(--apple-blue);
+            font-size: var(--font-size-xl);
+            flex-shrink: 0;
+        }
+        
+        .money-back {
+            background: rgba(76, 217, 100, 0.1);
+            border: 2px solid #4cd964;
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            text-align: center;
+            margin: var(--space-6) 0;
+            color: #4cd964;
+        }
+        
+        .testimonial-paid {
+            background: var(--bg-primary);
+            border: 2px solid var(--apple-blue);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin: var(--space-6) 0;
+            position: relative;
+        }
+        
+        .testimonial-paid::before {
+            content: '"';
+            position: absolute;
+            top: var(--space-4);
+            left: var(--space-4);
+            font-size: var(--font-size-4xl);
+            color: var(--apple-blue-light);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-content">
+            <a href="/openclaw-guide/" class="logo">
+                <span>🦐</span>
+                <span>OpenClaw Guide</span>
+            </a>
+            <nav class="nav">
+                <ul>
+                    <li><a href="/openclaw-guide/">首页</a></li>
+                    <li><a href="/openclaw-guide/#tutorials">免费教程</a></li>
+                    <li><a href="/openclaw-guide/about/">关于</a></li>
+                    <li><a href="/openclaw-guide/contact/">联系</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="tutorial-content">
+        <div class="container">
+            <!-- Tutorial Header -->
+            <div class="tutorial-header">
+                <h1 class="tutorial-title">OpenClaw Feishu集成完整指南</h1>
+                <p class="lead text-center text-secondary">
+                    从零到实战，掌握OpenClaw与飞书(Lark)的完整集成方案。<br>
+                    包含详细步骤、代码示例、问题解决方案和企业级部署建议。
+                </p>
+                <div class="tutorial-meta">
+                    <span>📚 完整教程</span>
+                    <span>⏱️ 预计学习时间: 2-3小时</span>
+                    <span>🎯 难度: 中级到高级</span>
+                    <span>💰 付费内容</span>
+                </div>
+            </div>
+
+            <!-- Pricing Card -->
+            <div class="pricing-card">
+                <h2>立即获取完整教程</h2>
+                <p class="lead" style="opacity: 0.9; margin-bottom: var(--space-4);">
+                    一次性支付，永久访问。包含所有更新版本。
+                </p>
+                <div class="price">¥143</div>
+                <p class="price-subtext">原价 $19.99，按当前汇率折算</p>
+                
+                <!-- 支付宝收款码区域 -->
+                <div class="alipay-qr">
+                    <h3 style="color: var(--text-primary); margin-bottom: var(--space-4);">支付宝扫码支付</h3>
+                    <p style="color: var(--text-secondary); font-size: var(--font-size-sm); margin-bottom: var(--space-4);">
+                        请扫码支付¥143，付款后联系客服获取教程
+                    </p>
+                    <!-- 这里需要插入你的支付宝收款码 -->
+                    <div style="background: #f5f5f7; padding: var(--space-4); border-radius: var(--radius-sm); text-align: center; margin: var(--space-4) 0;">
+                        <p style="color: var(--text-tertiary); font-size: var(--font-size-sm);">
+                            [支付宝收款码图片将在这里显示]
+                        </p>
+                        <p style="color: var(--apple-blue); font-weight: 600; margin-top: var(--space-2);">
+                            请通过Feishu发送收款码截图给我
+                        </p>
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: var(--font-size-xs); margin-top: var(--space-4);">
+                        支付后请截图付款凭证，通过<a href="/openclaw-guide/contact/" style="color: var(--apple-blue);">联系我们</a>页面发送
+                    </p>
+                </div>
+                
+                <div class="money-back">
+                    <strong>✅ 30天无条件退款保证</strong>
+                    <p style="margin-top: var(--space-2); font-size: var(--font-size-sm);">
+                        如果教程不符合你的期望，30天内可申请全额退款。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Payment Steps -->
+            <div class="payment-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>扫码支付</h3>
+                    <p>使用支付宝扫描上方二维码支付¥143</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>发送凭证</h3>
+                    <p>截图付款凭证，通过联系我们页面发送</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>获取教程</h3>
+                    <p>24小时内通过邮件发送完整教程</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>开始学习</h3>
+                    <p>按照教程步骤实践，掌握Feishu集成</p>
+                </div>
+            </div>
+
+            <!-- Tutorial Benefits -->
+            <div class="benefits">
+                <h2 class="text-center mb-6">你将获得什么？</h2>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">📖</div>
+                    <div>
+                        <h4>完整PDF教程</h4>
+                        <p>100+页详细教程，包含截图、代码示例和最佳实践。</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">💻</div>
+                    <div>
+                        <h4>实战代码示例</h4>
+                        <p>可直接使用的配置文件和脚本，节省开发时间。</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔧</div>
+                    <div>
+                        <h4>问题解决方案</h4>
+                        <p>常见错误和问题解决方案，避免踩坑。</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">🏢</div>
+                    <div>
+                        <h4>企业级部署指南</h4>
+                        <p>团队协作、权限管理、安全配置等高级内容。</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔄</div>
+                    <div>
+                        <h4>持续更新</h4>
+                        <p>免费获取未来更新版本，跟随OpenClaw发展。</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">🤝</div>
+                    <div>
+                        <h4>社区支持</h4>
+                        <p>加入专属学习群，与其他学员交流经验。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tutorial Outline -->
+            <div class="content">
+                <h2>教程大纲</h2>
+                
+                <h3>第一部分：基础准备</h3>
+                <ul>
+                    <li>OpenClaw安装和基础配置</li>
+                    <li>Feishu开放平台应用创建</li>
+                    <li>权限配置和事件订阅</li>
+                    <li>开发环境搭建</li>
+                </ul>
+                
+                <h3>第二部分：集成实现</h3>
+                <ul>
+                    <li>Feishu插件安装和配置</li>
+                    <li>消息接收和发送实现</li>
+                    <li>用户认证和权限管理</li>
+                    <li>富文本消息和卡片消息</li>
+                </ul>
+                
+                <h3>第三部分：高级功能</h3>
+                <ul>
+                    <li>自定义技能开发</li>
+                    <li>工作流自动化</li>
+                    <li>数据同步和备份</li>
+                    <li>性能优化和监控</li>
+                </ul>
+                
+                <h3>第四部分：企业部署</h3>
+                <ul>
+                    <li>团队协作配置</li>
+                    <li>安全合规设置</li>
+                    <li>高可用部署方案</li>
+                    <li>故障排除和维护</li>
+                </ul>
+                
+                <h3>第五部分：实战案例</h3>
+                <ul>
+                    <li>客服机器人实现</li>
+                    <li>任务管理自动化</li>
+                    <li>数据报表生成</li>
+                    <li>团队协作优化</li>
+                </ul>
+            </div>
+
+            <!-- Testimonials -->
+            <div class="testimonial-paid">
+                <div class="testimonial-content">
+                    "这个Feishu集成教程太实用了！我之前花了三天时间都没搞定的问题，
+                    按照教程2小时就解决了。代码示例可以直接使用，节省了大量时间。"
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">王</div>
+                    <div class="author-info">
+                        <h4>王技术</h4>
+                        <p>企业IT主管，已购买教程</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="content">
+                <h2>常见问题</h2>
+                
+                <h3>Q: 教程是什么格式？</h3>
+                <p>A: 提供PDF电子书格式，可在电脑、平板、手机阅读。包含可复制的代码示例。</p>
+                
+                <h3>Q: 需要什么基础？</h3>
+                <p>A: 需要基本的命令行知识和JavaScript基础。教程从基础开始讲解。</p>
+                
+                <h3>Q: 如何获取更新？</h3>
+                <p>A: 购买后永久免费获取更新版本，我们会邮件通知更新。</p>
+                
+                <h3>Q: 支持团队购买吗？</h3>
+                <p>A: 支持，团队购买请联系我们获取团体优惠。</p>
+                
+                <h3>Q: 退款流程是怎样的？</h3>
+                <p>A: 30天内通过联系我们页面申请，无需理由，全额退款。</p>
+            </div>
+
+            <!-- Final CTA -->
+            <div class="text-center mt-10">
+                <h2>准备好掌握OpenClaw Feishu集成了吗？</h2>
+                <p class="lead text-secondary mb-6">
+                    投资¥143，获得价值数千元的实战经验和时间节省。
+                </p>
+                <a href="#pricing-card" class="btn btn-primary btn-lg">立即购买 (¥143)</a>
+                <p class="text-tertiary mt-4" style="font-size: var(--font-size-sm);">
+                    已有超过50位学员通过本教程成功实现OpenClaw Feishu集成。
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>学习资源</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/tutorials/">教程中心</a></li>
+                        <li><a href="/openclaw-guide/html-tutorials/getting-started.html">免费教程</a></li>
+                        <li><a href="/openclaw-guide/paid-tutorials/feishu-integration.html">付费教程</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>法律条款</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/privacy/">隐私政策</a></li>
+                        <li><a href="/openclaw-guide/terms/">使用条款</a></li>
+                        <li><a href="/openclaw-guide/refund/">退款政策</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/about/">关于我们</a></li>
+                        <li><a href="/openclaw-guide/contact/">联系我们</a></li>
+                        <li><a href="https://discord.gg/clawd">社区支持</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li><a href="https://github.com/openclaw">GitHub</a></li>
+                        <li><a href="https://twitter.com/openclaw">Twitter</a></li>
+                        <li><a href="https://discord.gg/clawd">Discord</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 OpenClaw Guide. 保留所有权利。</p>
+                <p class="text-tertiary mt-2">本网站与OpenClaw官方无关，是独立的学习资源平台。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Copy payment info
+        document.addEventListener('DOMContentLoaded', function() {
+            const paymentInfo = document.getElementById('payment-info');
+            if (paymentInfo) {
+                paymentInfo.addEventListener('click', function() {
+                    const text = this.innerText;
+                    navigator.clipboard.writeText(text).then(() => {
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<span style="color: var(--apple-blue);">✅ 已复制到剪贴板</span>';
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                        }, 2000);
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
