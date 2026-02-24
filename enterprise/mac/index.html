@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>macOS企业部署 | OpenClaw Guide</title>
+    <link rel="stylesheet" href="/openclaw-guide/assets/css/apple-style.css">
+    <style>
+        .platform-hero {
+            background: linear-gradient(135deg, #1d1d1f 0%, #2c2c2e 100%);
+            color: white;
+            padding: var(--space-12) 0;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin: var(--space-8) 0;
+        }
+        
+        .feature-card {
+            background: var(--apple-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            border: 1px solid var(--apple-border);
+        }
+        
+        .feature-icon {
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--space-4);
+            color: var(--apple-blue);
+        }
+        
+        .code-block {
+            background: var(--apple-surface-secondary);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+            font-size: var(--font-size-sm);
+            overflow-x: auto;
+            margin: var(--space-4) 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="header-content">
+            <a href="/openclaw-guide/" class="logo">
+                <span>🦞</span>
+                <span>OpenClaw Guide</span>
+            </a>
+            <nav class="nav">
+                <ul>
+                    <li><a href="/openclaw-guide/">首页</a></li>
+                    <li><a href="/openclaw-guide/#tutorials">免费教程</a></li>
+                    <li><a href="/openclaw-guide/paid-tutorials/feishu-integration.html">付费教程</a></li>
+                    <li><a href="/openclaw-guide/enterprise/">企业级</a></li>
+                    <li><a href="/openclaw-guide/member-access.html" style="color: #4cd964; font-weight: 600;">会员入口</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 平台英雄区域 -->
+        <section class="platform-hero">
+            <div class="container">
+                <div style="text-align: center;">
+                    <div style="font-size: var(--font-size-6xl); margin-bottom: var(--space-4);">🍎</div>
+                    <h1 class="display-1">macOS 企业级部署方案</h1>
+                    <p class="lead" style="max-width: 800px; margin: var(--space-6) auto; opacity: 0.9;">
+                        为macOS环境提供完整的企业级OpenClaw部署、管理和优化解决方案。支持MDM管理、安全策略、自动化部署和性能优化。
+                    </p>
+                    <div class="mt-8">
+                        <a href="#contact" class="btn btn-light">立即咨询</a>
+                        <a href="/openclaw-guide/enterprise/" class="btn btn-outline-light ml-4">返回企业级首页</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 平台特性 -->
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center">macOS企业级特性</h2>
+                <p class="text-center text-secondary mb-8">
+                    专为macOS企业环境设计的高级功能
+                </p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>MDM管理集成</h3>
+                        <p class="text-secondary">
+                            与macOS MDM系统深度集成，支持远程配置、策略管理和设备监控。
+                        </p>
+                        <ul class="mt-4 text-sm">
+                            <li>✅ 配置文件自动部署</li>
+                            <li>✅ 安全策略集中管理</li>
+                            <li>✅ 设备状态实时监控</li>
+                            <li>✅ 批量配置和更新</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>TCC权限自动化</h3>
+                        <p class="text-secondary">
+                            自动化配置TCC权限，无需用户手动授权，提升部署效率。
+                        </p>
+                        <ul class="mt-4 text-sm">
+                            <li>✅ 辅助功能权限自动化</li>
+                            <li>✅ 屏幕录制权限配置</li>
+                            <li>✅ 摄像头/麦克风权限</li>
+                            <li>✅ 文件访问权限管理</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">⚙️</div>
+                        <h3>LaunchDaemon服务</h3>
+                        <p class="text-secondary">
+                            专业的LaunchDaemon配置，确保服务稳定运行和自动恢复。
+                        </p>
+                        <ul class="mt-4 text-sm">
+                            <li>✅ 系统级服务部署</li>
+                            <li>✅ 自动启动和恢复</li>
+                            <li>✅ 资源限制和优先级</li>
+                            <li>✅ 日志和监控集成</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 部署方案 -->
+        <section class="section" style="background: var(--apple-surface-secondary);">
+            <div class="container">
+                <h2 class="text-center">部署方案</h2>
+                <p class="text-center text-secondary mb-8">
+                    根据企业规模选择适合的macOS部署方案
+                </p>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>基础部署</h3>
+                        <p class="text-secondary">
+                            适合小型团队或测试环境。
+                        </p>
+                        <ul class="mt-4">
+                            <li>✅ 单机部署</li>
+                            <li>✅ 基础配置</li>
+                            <li>✅ 文档支持</li>
+                            <li>✅ 社区技术支持</li>
+                        </ul>
+                        <div class="mt-6">
+                            <div class="price">¥9,999</div>
+                            <a href="#contact" class="btn btn-secondary btn-block mt-4">咨询详情</a>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card" style="border-color: var(--apple-blue);">
+                        <div class="badge" style="background: var(--apple-blue); color: white;">推荐</div>
+                        <h3>标准部署</h3>
+                        <p class="text-secondary">
+                            适合中型企业生产环境。
+                        </p>
+                        <ul class="mt-4">
+                            <li>✅ 高可用部署</li>
+                            <li>✅ MDM集成</li>
+                            <li>✅ 安全策略配置</li>
+                            <li>✅ 专业技术支持</li>
+                            <li>✅ 培训服务</li>
+                        </ul>
+                        <div class="mt-6">
+                            <div class="price">¥29,999</div>
+                            <a href="#contact" class="btn btn-primary btn-block mt-4">立即咨询</a>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>高级部署</h3>
+                        <p class="text-secondary">
+                            适合大型企业或特殊需求。
+                        </p>
+                        <ul class="mt-4">
+                            <li>✅ 定制化部署</li>
+                            <li>✅ 完整MDM集成</li>
+                            <li>✅ 企业级安全</li>
+                            <li>✅ 专属技术支持</li>
+                            <li>✅ 现场培训</li>
+                            <li>✅ 定制开发</li>
+                        </ul>
+                        <div class="mt-6">
+                            <div class="price">定制报价</div>
+                            <a href="#contact" class="btn btn-secondary btn-block mt-4">定制方案</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 技术示例 -->
+        <section class="section">
+            <div class="container">
+                <h2 class="text-center">技术实现示例</h2>
+                <p class="text-center text-secondary mb-8">
+                    macOS企业级部署的技术细节
+                </p>
+                
+                <div class="feature-card">
+                    <h3>LaunchDaemon配置示例</h3>
+                    <p class="text-secondary">
+                        专业的LaunchDaemon配置文件，确保服务稳定运行。
+                    </p>
+                    
+                    <div class="code-block">
+<?xml version="1.0" encoding="UTF-8"?>
+&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+    &lt;key&gt;Label&lt;/key&gt;
+    &lt;string&gt;com.openclaw.enterprise&lt;/string&gt;
+    &lt;key&gt;ProgramArguments&lt;/key&gt;
+    &lt;array&gt;
+        &lt;string&gt;/Applications/OpenClawEnterprise/start.sh&lt;/string&gt;
+        &lt;string&gt;--cluster&lt;/string&gt;
+        &lt;string&gt;--workers&lt;/string&gt;
+        &lt;string&gt;4&lt;/string&gt;
+    &lt;/array&gt;
+    &lt;key&gt;RunAtLoad&lt;/key&gt;
+    &lt;true/&gt;
+    &lt;key&gt;KeepAlive&lt;/key&gt;
+    &lt;true/&gt;
+    &lt;key&gt;StandardOutPath&lt;/key&gt;
+    &lt;string&gt;/var/log/openclaw/stdout.log&lt;/string&gt;
+    &lt;key&gt;StandardErrorPath&lt;/key&gt;
+    &lt;string&gt;/var/log/openclaw/stderr.log&lt;/string&gt;
+    &lt;key&gt;EnvironmentVariables&lt;/key&gt;
+    &lt;dict&gt;
+        &lt;key&gt;NODE_ENV&lt;/key&gt;
+        &lt;string&gt;production&lt;/string&gt;
+        &lt;key&gt;OPENCLAW_ENTERPRISE&lt;/key&gt;
+        &lt;string&gt;true&lt;/string&gt;
+    &lt;/dict&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h4>部署脚本示例</h4>
+                        <div class="code-block">
+#!/bin/bash
+# deploy-openclaw-mac-enterprise.sh
+
+# 企业级Mac部署脚本
+set -e
+
+echo "开始部署OpenClaw企业版到Mac..."
+
+# 1. 检查系统要求
+check_system_requirements() {
+    echo "检查系统要求..."
+    local macos_version=$(sw_vers -productVersion)
+    if [[ "$macos_version" < "12.0" ]]; then
+        echo "错误: 需要macOS 12.0或更高版本"
+        exit 1
+    fi
+}
+
+# 2. 安装依赖
+install_dependencies() {
+    echo "安装依赖..."
+    if ! command -v brew &> /dev/null; then
+        echo "安装Homebrew..."
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
+    
+    brew install node@18 redis postgresql@14
+    brew services start redis
+    brew services start postgresql
+}
+
+# 更多部署步骤...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系表单 -->
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="text-center">macOS部署咨询</h2>
+                <p class="text-center text-secondary mb-8">
+                    填写以下信息，我们的macOS专家将在24小时内联系您
+                </p>
+                
+                <div style="max-width: 600px; margin: 0 auto;">
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="macContactForm">
+                                <div class="form-group">
+                                    <label for="company">公司名称</label>
+                                    <input type="text" id="company" class="form-control" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="name">联系人</label>
+                                    <input type="text" id="name" class="form-control" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">邮箱地址</label>
+                                    <input type="email" id="email" class="form-control" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="macCount">macOS设备数量</label>
+                                    <select id="macCount" class="form-control" required>
+                                        <option value="">请选择</option>
+                                        <option value="1-10">1-10台</option>
+                                        <option value="11-50">11-50台</option>
+                                        <option value="51-100">51-100台</option>
+                                        <option value="100+">100台以上</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="requirements">具体需求</label>
+                                    <textarea id="requirements" class="form-control" rows="4" placeholder="请描述您的macOS部署需求..."></textarea>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary btn-block">
+                                    提交咨询
+                                </button>
+                            </form>
+                            
+                            <div class="mt-6 text-center">
+                                <p class="text-secondary">或直接联系我们：</p>
+                                <p>
+                                    <strong>邮箱：</strong>
+                                    <a href="mailto:boss@aeroeggtech.com">boss@aeroeggtech.com</a>
+                                </p>
+                                <p class="text-tertiary mt-2">
+                                    我们承诺24小时内回复，并提供专业的macOS解决方案。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>macOS服务</h4>
+                    <ul>
+                        <li><a href="/openclaw-guide/enterprise/mac/">macOS部署</a></li>
+                        <li><a href="/openclaw-guide/enterprise/windows/">Windows集成</a></li>
+                        <li><a href="/openclaw-guide/enterprise/linux/">Linux生产环境</a></li>
+                        <li><a href="/openclaw-guide/enterprise/architecture/">跨平台架构</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>技术支持</h4>
+                    <ul>
+                        <li><a href="mailto:boss@aeroeggtech.com">企业支持</a></li>
+                        <li><a href="/openclaw-guide/file-download.html">技术文档</a></li>
+                        <li><a href="/openclaw-guide/paid-tutorials/feishu-integration.html">高级教程</a></li>
+                        <li><a href="/openclaw-guide/member-access.html">会员入口</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 OpenClaw Guide. 保留所有权利。</p>
+                <p class="text-tertiary mt-2">macOS企业支持: <a href="mailto:boss@aeroeggtech.com">boss@aeroeggtech.com</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 表单提交处理
+        document.getElementById('macContactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('感谢您的咨询！我们的macOS专家将在24小时内联系您。');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
