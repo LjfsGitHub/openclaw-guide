@@ -139,6 +139,27 @@ search:
 paginate: 10
 paginate_path: "/blog/page:num/"
 
+# 教程集合配置
+collections:
+  tutorials:
+    output: true
+    permalink: /:collection/:path/
+
+# 默认值
+defaults:
+  - scope:
+      path: "tutorials/free"
+      type: "tutorials"
+    values:
+      layout: "tutorial"
+      category: "free"
+  - scope:
+      path: "tutorials/paid"
+      type: "tutorials"
+    values:
+      layout: "tutorial"
+      category: "paid"
+
 # 构建排除
 exclude:
   - "node_modules"
@@ -146,6 +167,7 @@ exclude:
   - "*.gem"
   - ".git"
   - ".svn"
+  - "content"  # 旧的内容目录，现在使用tutorials目录
 
 # 评论系统 (可选)
 comments: false

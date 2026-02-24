@@ -48,7 +48,7 @@ description: "学习OpenClaw集成、开发、部署的最佳实践和实战教�
 
 ### 🆓 免费学习资源
 
-- [OpenClaw入门指南](/blog/getting-started) - 基础安装和配置
+- [OpenClaw入门指南](/tutorials/free/getting-started) - 基础安装和配置
 - [常见问题解答](/blog/faq) - 解决常见配置问题
 - [最佳实践](/blog/best-practices) - 提高效率的技巧
 - [社区案例](/blog/case-studies) - 真实用户成功故事
@@ -58,7 +58,7 @@ description: "学习OpenClaw集成、开发、部署的最佳实践和实战教�
 ### 1. 选择学习路径
 根据你的目标选择合适的学习路径：
 
-- **用户路径**：只想使用OpenClaw → 从[基础教程](/tutorials/basics)开始
+- **用户路径**：只想使用OpenClaw → 从[基础教程](/tutorials/free/getting-started)开始
 - **开发者路径**：想要扩展功能 → 学习[技能开发](/tutorials/development)
 - **企业路径**：需要团队部署 → 查看[企业指南](/tutorials/enterprise)
 
@@ -70,7 +70,7 @@ description: "学习OpenClaw集成、开发、部署的最佳实践和实战教�
 - 相关平台账号（如飞书、Telegram等）
 
 ### 3. 开始学习
-按照教程步骤操作，遇到问题查看[问题解决指南](/troubleshooting)或加入[社区讨论](https://discord.gg/clawd)。
+按照教程步骤操作，遇到问题查看[问题解决指南](/tutorials/free/getting-started)或加入[社区讨论](https://discord.gg/clawd)。
 
 ## 📊 学习成果
 
